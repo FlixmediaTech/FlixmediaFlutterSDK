@@ -57,9 +57,13 @@ public class FlixInpagePlugin: NSObject, FlutterPlugin {
                                                              ean: productParamsDTO.ean ?? "",
                                                              distId: productParamsDTO.distributorId ?? "",
                                                              isoCode: productParamsDTO.isoCode ?? "",
-                                                             flIsoCode: productParamsDTO.flIsoCode ?? "")
+                                                             flIsoCode: productParamsDTO.flIsoCode ?? "",
+                                                             brand: productParamsDTO.brand ?? "",
+                                                             title: productParamsDTO.title ?? "",
+                                                             price: productParamsDTO.price ?? "",
+                                                             currency: productParamsDTO.currency ?? "")
                 
-                let config = WebViewConfiguration(productParams: productParams)
+                let config = WebViewConfiguration(productParams: productParams, baseURL: URL(string: "https://www.example.com")!)
                 let html = try await FlixMedia.shared.loadHTML(configuration: config)
                 completion(html, nil)
             } catch {
@@ -72,12 +76,16 @@ public class FlixInpagePlugin: NSObject, FlutterPlugin {
 struct ProductRequestParametersDTO: Decodable {
     let mpn: String?
     let ean: String?
-    let distributorId: String?   // <- trzymamy jako String, ale dekodujemy Int albo String
+    let distributorId: String?
     let isoCode: String?
     let flIsoCode: String?
+    let brand: String?
+    let title: String?
+    let price: String?
+    let currency: String?
 
     enum CodingKeys: String, CodingKey {
-        case mpn, ean, distributorId, isoCode, flIsoCode
+        case mpn, ean, distributorId, isoCode, flIsoCode, brand, title, price, currency
     }
 
     init(from decoder: Decoder) throws {
@@ -96,5 +104,9 @@ struct ProductRequestParametersDTO: Decodable {
 
         isoCode = try c.decodeIfPresent(String.self, forKey: .isoCode)
         flIsoCode = try c.decodeIfPresent(String.self, forKey: .flIsoCode)
+        brand = try c.decodeIfPresent(String.self, forKey: .brand)
+        title = try c.decodeIfPresent(String.self, forKey: .title)
+        price = try c.decodeIfPresent(String.self, forKey: .price)
+        currency = try c.decodeIfPresent(String.self, forKey: .currency)
     }
 }

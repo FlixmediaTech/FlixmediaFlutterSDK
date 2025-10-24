@@ -1,18 +1,26 @@
 import 'dart:async';
 import 'dart:math';
 import 'dart:collection';
+import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'flix_bridge.dart';
+import 'js_scripts.dart';
+import 'external_link.dart';
+import 'flix_inpage_controller.dart';
 
 class FlixInpageHtmlView extends StatefulWidget {
   final Map<String, dynamic> productParams;
   final String? baseURL;
+  final ScrollController? parentScrollController;
+  final FlixInpageHtmlViewController? controller;
 
   const FlixInpageHtmlView({
     super.key,
     required this.productParams,
     this.baseURL,
+    this.parentScrollController,
+    this.controller,
   });
 
   @override
@@ -27,17 +35,6 @@ class _FlixInpageHtmlViewState extends State<FlixInpageHtmlView> {
   ScrollPosition? _scrollPosition;
   DateTime _lastSent = DateTime.fromMillisecondsSinceEpoch(0);
   static const _throttle = Duration(milliseconds: 50);
-
-  static const String _resizeObserverJS = r"""
-        function sendResizeMessage() {
-            try { 
-              window.flutter_inappwebview.callHandler('onResize', document.body.scrollHeight); 
-            } catch (e) {}
-        }
-        const observer = new MutationObserver(function(mutations) { sendResizeMessage(); });
-        observer.observe(document.body, { childList: true, subtree: true, attributes: true });
-        window.addEventListener("load", sendResizeMessage);
-  """;
 
   @override
   void initState() {
@@ -59,6 +56,7 @@ class _FlixInpageHtmlViewState extends State<FlixInpageHtmlView> {
 
   @override
   void dispose() {
+    widget.controller?.detach();
     _scrollPosition?.removeListener(_onParentScrolled);
     super.dispose();
   }
@@ -104,15 +102,13 @@ class _FlixInpageHtmlViewState extends State<FlixInpageHtmlView> {
     final intersection = w.intersect(vp);
 
     final double topOffset = (intersection.top - w.top).clamp(0.0, w.height);
-
     final double visibleHeight = intersection.height.clamp(0.0, w.height);
 
     final js = """
       (function(){
         try {
-          if (typeof InpageModuleTracker !== 'undefined' &&
-              typeof InpageModuleTracker.onScrollFromApp === 'function') {
-            InpageModuleTracker.onScrollFromApp(${topOffset.toStringAsFixed(2)}, ${visibleHeight.toStringAsFixed(2)});
+          if (typeof window.flixtracking.onScrollFromApp === 'function') {
+            window.flixtracking.onScrollFromApp(${topOffset.toStringAsFixed(2)}, ${visibleHeight.toStringAsFixed(2)});
           }
         } catch(e) {}
       })();
@@ -121,6 +117,38 @@ class _FlixInpageHtmlViewState extends State<FlixInpageHtmlView> {
     try {
       await _controller!.evaluateJavascript(source: js);
     } catch (_) {}
+  }
+
+  Future<void> _scrollViewportTo(double viewportTop, {bool animated = true}) async {
+    if (widget.parentScrollController == null) {
+      return;
+    }
+    final box = context.findRenderObject() as RenderBox?;
+    if (box == null || !box.attached) {
+      Future.delayed(const Duration(milliseconds: 20), () {
+        _scrollViewportTo(viewportTop, animated: animated);
+      });
+      return;
+    }
+
+    final mediaTop = MediaQuery.of(context).padding.top;
+    final appBarHeight = Scaffold.of(context).appBarMaxHeight ?? 0;
+
+    final localOffset = box.localToGlobal(Offset(0, viewportTop));
+    final scrollOffset = widget.parentScrollController!.offset
+                        + localOffset.dy
+                        - mediaTop
+                        - appBarHeight;
+
+    try {
+      widget.parentScrollController!.animateTo(
+        scrollOffset,
+        duration: animated ? const Duration(milliseconds: 250) : const Duration(milliseconds: 1),
+        curve: Curves.easeInOut,
+      );
+    } catch (e) {
+      debugPrint("Error during scrolling: $e");
+    }
   }
 
   @override
@@ -145,7 +173,11 @@ class _FlixInpageHtmlViewState extends State<FlixInpageHtmlView> {
         ),
         initialUserScripts: UnmodifiableListView<UserScript>([
           UserScript(
-            source: _resizeObserverJS,
+            source: resizeObserverJS,
+            injectionTime: UserScriptInjectionTime.AT_DOCUMENT_END,
+          ),
+          UserScript(
+            source: linkHandlerJS,
             injectionTime: UserScriptInjectionTime.AT_DOCUMENT_END,
           ),
         ]),
@@ -155,6 +187,7 @@ class _FlixInpageHtmlViewState extends State<FlixInpageHtmlView> {
         ),
         onWebViewCreated: (c) {
           _controller = c;
+          widget.controller?.attach(c);
           c.addJavaScriptHandler(
             handlerName: 'onResize',
             callback: (args) {
@@ -167,6 +200,43 @@ class _FlixInpageHtmlViewState extends State<FlixInpageHtmlView> {
               return null;
             },
           );
+          c.addJavaScriptHandler(
+            handlerName: 'onLinktap',
+            callback: (args) {
+              if (args.isEmpty) return null;
+              final url = args.first.toString();
+              handleExternalLink(url, context);
+              return null;
+            },
+          );
+          c.addJavaScriptHandler(
+            handlerName: 'scrollToViewport',
+            callback: (args) {
+              try {
+                if (args.isEmpty) return null;
+                final first = args[0];
+                if (first is! num) return null;
+                final double viewportTop = first.toDouble();
+
+                bool animated = true;
+                if (args.length > 1 && args[1] is bool) {
+                  animated = args[1] as bool;
+                }
+
+                _scrollViewportTo(viewportTop, animated: animated);
+              } catch (_) {
+                // ignore
+              }
+              return null;
+            },
+          );
+        },
+        shouldOverrideUrlLoading: (controller, navigationAction) async {
+          final url = navigationAction.request.url?.toString() ?? '';
+          if (url.endsWith('.png') || url.endsWith('.pdf') || url.endsWith('.zip') || url.endsWith('.jpg')) {
+            return NavigationActionPolicy.CANCEL;
+          }
+          return NavigationActionPolicy.ALLOW;
         },
         onLoadStop: (c, url) async {
           await c.evaluateJavascript(
