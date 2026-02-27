@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.1.2 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+// swift-compiler-version: Apple Swift version 6.2.3 (swiftlang-6.2.3.3.21 clang-1700.6.3.2)
 // swift-module-flags: -target arm64-apple-ios15.6-simulator -enable-objc-interop -enable-library-evolution -swift-version 6 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -module-name FlixMediaSDK
-// swift-module-flags-ignorable:  -interface-compiler-version 6.1.2
+// swift-module-flags-ignorable:  -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.3
 import AdSupport
 import AppTrackingTransparency
 import Foundation
@@ -12,35 +12,10 @@ import WebKit
 import _Concurrency
 import _StringProcessing
 import _SwiftConcurrencyShims
-public struct ProductRequestParameters : Swift.Sendable {
-  public init(mpn: Swift.String, ean: Swift.String, distId: Swift.String, isoCode: Swift.String, flIsoCode: Swift.String, brand: Swift.String, title: Swift.String, price: Swift.String, currency: Swift.String)
-}
-public enum WebViewState {
-  case loading
-  case loaded
-  case error(any Swift.Error)
-}
-public struct WebViewConfiguration : Swift.Sendable {
-  public init(productParams: FlixMediaSDK.ProductRequestParameters, baseURL: Foundation.URL)
-}
-@_Concurrency.MainActor @preconcurrency public struct FlixWebView : SwiftUI.UIViewRepresentable {
-  @_Concurrency.MainActor @preconcurrency public init(configuration: FlixMediaSDK.WebViewConfiguration, logger: FlixMediaSDK.FlixWebViewLogger? = nil, onHeightChange: ((CoreFoundation.CGFloat) -> Swift.Void)? = nil, onStateChange: ((FlixMediaSDK.WebViewState) -> Swift.Void)? = nil)
-  @_Concurrency.MainActor @preconcurrency public func makeCoordinator() -> FlixMediaSDK.FlixWebView.Coordinator
-  @_Concurrency.MainActor @preconcurrency public func makeUIView(context: FlixMediaSDK.FlixWebView.Context) -> WebKit.WKWebView
-  @_Concurrency.MainActor @preconcurrency public func updateUIView(_ webView: WebKit.WKWebView, context: FlixMediaSDK.FlixWebView.Context)
-  @objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency final public class Coordinator : ObjectiveC.NSObject, WebKit.WKScriptMessageHandler, WebKit.WKNavigationDelegate, UIKit.UIScrollViewDelegate {
-    @_Concurrency.MainActor @preconcurrency @objc final public func userContentController(_ userContentController: WebKit.WKUserContentController, didReceive message: WebKit.WKScriptMessage)
-    @_Concurrency.MainActor @preconcurrency @objc final public func webView(_ webView: WebKit.WKWebView, decidePolicyFor navigationAction: WebKit.WKNavigationAction, decisionHandler: @escaping @_Concurrency.MainActor @Sendable (WebKit.WKNavigationActionPolicy) -> Swift.Void)
-    @_Concurrency.MainActor @preconcurrency @objc final public func scrollViewDidScroll(_ scrollView: UIKit.UIScrollView)
-    @_Concurrency.MainActor @preconcurrency @objc final public func webView(_ webView: WebKit.WKWebView, didFinish navigation: WebKit.WKNavigation!)
-    @objc deinit
-  }
-  public typealias Body = Swift.Never
-  public typealias UIViewType = WebKit.WKWebView
-}
+import _WebKit_SwiftUI
 @_hasMissingDesignatedInitializers public actor FlixMedia {
   public static let shared: FlixMediaSDK.FlixMedia
-  public func initialize(username: Swift.String, password: Swift.String) async throws
+  public func initialize(username: Swift.String, password: Swift.String, useSandbox: Swift.Bool = false) async throws
   public func loadHTML(configuration: FlixMediaSDK.WebViewConfiguration) async throws -> Swift.String
   @objc deinit
   @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
@@ -59,9 +34,42 @@ public enum FlixMediaError : Swift.Error, Foundation.LocalizedError, Swift.Senda
   case invalidStatusCode(Swift.Int)
   case serverError(message: Swift.String)
   case malformedURL
+  #if compiler(>=5.3) && $NonescapableTypes
   public var errorDescription: Swift.String? {
     get
   }
+  #endif
+}
+public struct ProductRequestParameters : Swift.Sendable {
+  public init(mpn: Swift.String, ean: Swift.String, distId: Swift.String, isoCode: Swift.String, flIsoCode: Swift.String, brand: Swift.String, title: Swift.String, price: Swift.String, currency: Swift.String)
+}
+public enum WebViewState {
+  case loading
+  case loaded
+  case error(any Swift.Error)
+}
+public struct WebViewConfiguration : Swift.Sendable {
+  public init(productParams: FlixMediaSDK.ProductRequestParameters, baseURL: Foundation.URL)
+}
+@_Concurrency.MainActor @preconcurrency public struct FlixWebView : SwiftUI.UIViewRepresentable {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public init(configuration: FlixMediaSDK.WebViewConfiguration, logger: FlixMediaSDK.FlixWebViewLogger? = nil, onHeightChange: ((CoreFoundation.CGFloat) -> Swift.Void)? = nil, onStateChange: ((FlixMediaSDK.WebViewState) -> Swift.Void)? = nil)
+  #endif
+  @_Concurrency.MainActor @preconcurrency public func makeCoordinator() -> FlixMediaSDK.FlixWebView.Coordinator
+  @_Concurrency.MainActor @preconcurrency public func makeUIView(context: FlixMediaSDK.FlixWebView.Context) -> WebKit.WKWebView
+  @_Concurrency.MainActor @preconcurrency public func updateUIView(_ webView: WebKit.WKWebView, context: FlixMediaSDK.FlixWebView.Context)
+  @_Concurrency.MainActor @preconcurrency public static func dismantleUIView(_ uiView: WebKit.WKWebView, coordinator: FlixMediaSDK.FlixWebView.Coordinator)
+  @objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency final public class Coordinator : ObjectiveC.NSObject, WebKit.WKScriptMessageHandler, WebKit.WKNavigationDelegate, UIKit.UIScrollViewDelegate {
+    @objc deinit
+    @_Concurrency.MainActor @preconcurrency @objc final public func userContentController(_ userContentController: WebKit.WKUserContentController, didReceive message: WebKit.WKScriptMessage)
+    @_Concurrency.MainActor @preconcurrency @objc final public func webView(_ webView: WebKit.WKWebView, decidePolicyFor navigationAction: WebKit.WKNavigationAction, decisionHandler: @escaping @_Concurrency.MainActor @Sendable (WebKit.WKNavigationActionPolicy) -> Swift.Void)
+    @_Concurrency.MainActor @preconcurrency @objc final public func scrollViewDidScroll(_ scrollView: UIKit.UIScrollView)
+    #if compiler(>=5.3) && $NonescapableTypes
+    @_Concurrency.MainActor @preconcurrency @objc final public func webView(_ webView: WebKit.WKWebView, didFinish navigation: WebKit.WKNavigation!)
+    #endif
+  }
+  public typealias Body = Swift.Never
+  public typealias UIViewType = WebKit.WKWebView
 }
 @_Concurrency.MainActor final public class FlixWebViewLogger {
   @_Concurrency.MainActor public init()

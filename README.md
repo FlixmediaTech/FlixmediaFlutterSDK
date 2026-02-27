@@ -1,10 +1,10 @@
 # FlixMedia Flutter Plugin
 
-The **FlixMedia Flutter Plugin** provides access to the FlixMedia iOS SDK (XCFramework) inside Flutter apps.  
+The **FlixMedia Flutter Plugin** provides access to the FlixMedia SDK inside Flutter apps (iOS and Android).  
 It allows you to display syndicated product content directly in Flutter using a simple widget.
 
 ## Features
-- Fetches syndicated HTML content from the FlixMedia iOS SDK.
+- Fetches syndicated HTML content from the FlixMedia SDK.
 - Displays content inside a Flutter `InAppWebView`.
 - Automatic height adjustment based on content.
 - Reports visible viewport metrics to the SDK for analytics and tracking.
@@ -13,6 +13,7 @@ It allows you to display syndicated product content directly in Flutter using a 
 ## Requirements
 - Flutter 3.0+  
 - iOS **15.6** or later  
+- Android minSdk **21**+  
 - Xcode 15+  
 - Swift 5  
 
@@ -26,6 +27,7 @@ dependencies:
   flix_inpage:
     path: ../flix_inpage
 ```
+3. Android support is available, but requires the FlixMedia Android SDK **AAR** to be published to your local Maven repository (`mavenLocal`) before building (the plugin resolves `com.flixmedia:flixmediasdk:1.0.4` from `mavenLocal()`).
 
 ## Initialization
 Before rendering any content, you must initialize the SDK with your FlixMedia credentials.
@@ -65,7 +67,7 @@ Example:
 ```
 
 ## Notes
-Only iOS is supported.
+Android is supported (with the FlixMedia Android SDK AAR published to `mavenLocal()`).
 Debugging mode allows enabling isInspectable for WebView inspection (iOS 16.4+).
 Make sure your FlixMedia SDK credentials are initialized before loading content.
 

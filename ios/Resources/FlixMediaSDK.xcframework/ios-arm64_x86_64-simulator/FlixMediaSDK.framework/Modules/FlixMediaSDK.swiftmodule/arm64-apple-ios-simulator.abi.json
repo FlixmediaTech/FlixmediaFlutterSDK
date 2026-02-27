@@ -6,8 +6,807 @@
     "children": [
       {
         "kind": "Import",
-        "name": "UIKit",
-        "printedName": "UIKit",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "FlixMediaSDK"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "FlixMedia",
+        "printedName": "FlixMedia",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "shared",
+            "printedName": "shared",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "FlixMedia",
+                "printedName": "FlixMediaSDK.FlixMedia",
+                "usr": "s:12FlixMediaSDK0aB0C"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:12FlixMediaSDK0aB0C6sharedACvpZ",
+            "mangledName": "$s12FlixMediaSDK0aB0C6sharedACvpZ",
+            "moduleName": "FlixMediaSDK",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "FlixMedia",
+                    "printedName": "FlixMediaSDK.FlixMedia",
+                    "usr": "s:12FlixMediaSDK0aB0C"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12FlixMediaSDK0aB0C6sharedACvgZ",
+                "mangledName": "$s12FlixMediaSDK0aB0C6sharedACvgZ",
+                "moduleName": "FlixMediaSDK",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "initialize",
+            "printedName": "initialize(username:password:useSandbox:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "hasDefaultArg": true,
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12FlixMediaSDK0aB0C10initialize8username8password10useSandboxySS_SSSbtYaKF",
+            "mangledName": "$s12FlixMediaSDK0aB0C10initialize8username8password10useSandboxySS_SSSbtYaKF",
+            "moduleName": "FlixMediaSDK",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "loadHTML",
+            "printedName": "loadHTML(configuration:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "WebViewConfiguration",
+                "printedName": "FlixMediaSDK.WebViewConfiguration",
+                "usr": "s:12FlixMediaSDK20WebViewConfigurationV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12FlixMediaSDK0aB0C8loadHTML13configurationSSAA20WebViewConfigurationV_tYaKF",
+            "mangledName": "$s12FlixMediaSDK0aB0C8loadHTML13configurationSSAA20WebViewConfigurationV_tYaKF",
+            "moduleName": "FlixMediaSDK",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "unownedExecutor",
+            "printedName": "unownedExecutor",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnownedSerialExecutor",
+                "printedName": "_Concurrency.UnownedSerialExecutor",
+                "usr": "s:Sce"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:12FlixMediaSDK0aB0C15unownedExecutorScevp",
+            "mangledName": "$s12FlixMediaSDK0aB0C15unownedExecutorScevp",
+            "moduleName": "FlixMediaSDK",
+            "implicit": true,
+            "intro_Macosx": "10.15",
+            "intro_iOS": "13.0",
+            "intro_tvOS": "13.0",
+            "intro_watchOS": "6.0",
+            "declAttributes": [
+              "Available",
+              "Available",
+              "Available",
+              "Available",
+              "Final",
+              "Nonisolated",
+              "Semantics"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UnownedSerialExecutor",
+                    "printedName": "_Concurrency.UnownedSerialExecutor",
+                    "usr": "s:Sce"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12FlixMediaSDK0aB0C15unownedExecutorScevg",
+                "mangledName": "$s12FlixMediaSDK0aB0C15unownedExecutorScevg",
+                "moduleName": "FlixMediaSDK",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:12FlixMediaSDK0aB0C",
+        "mangledName": "$s12FlixMediaSDK0aB0C",
+        "moduleName": "FlixMediaSDK",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "hasMissingDesignatedInitializers": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Actor",
+            "printedName": "Actor",
+            "usr": "s:ScA",
+            "mangledName": "$sScA"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "FlixMediaSDK"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "FlixMediaError",
+        "printedName": "FlixMediaError",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "invalidResponse",
+            "printedName": "invalidResponse",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(FlixMediaSDK.FlixMediaError.Type) -> FlixMediaSDK.FlixMediaError",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "FlixMediaError",
+                    "printedName": "FlixMediaSDK.FlixMediaError",
+                    "usr": "s:12FlixMediaSDK0aB5ErrorO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "FlixMediaSDK.FlixMediaError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FlixMediaError",
+                        "printedName": "FlixMediaSDK.FlixMediaError",
+                        "usr": "s:12FlixMediaSDK0aB5ErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12FlixMediaSDK0aB5ErrorO15invalidResponseyA2CmF",
+            "mangledName": "$s12FlixMediaSDK0aB5ErrorO15invalidResponseyA2CmF",
+            "moduleName": "FlixMediaSDK",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "emptyToken",
+            "printedName": "emptyToken",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(FlixMediaSDK.FlixMediaError.Type) -> FlixMediaSDK.FlixMediaError",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "FlixMediaError",
+                    "printedName": "FlixMediaSDK.FlixMediaError",
+                    "usr": "s:12FlixMediaSDK0aB5ErrorO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "FlixMediaSDK.FlixMediaError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FlixMediaError",
+                        "printedName": "FlixMediaSDK.FlixMediaError",
+                        "usr": "s:12FlixMediaSDK0aB5ErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12FlixMediaSDK0aB5ErrorO10emptyTokenyA2CmF",
+            "mangledName": "$s12FlixMediaSDK0aB5ErrorO10emptyTokenyA2CmF",
+            "moduleName": "FlixMediaSDK",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "unauthorized",
+            "printedName": "unauthorized",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(FlixMediaSDK.FlixMediaError.Type) -> FlixMediaSDK.FlixMediaError",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "FlixMediaError",
+                    "printedName": "FlixMediaSDK.FlixMediaError",
+                    "usr": "s:12FlixMediaSDK0aB5ErrorO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "FlixMediaSDK.FlixMediaError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FlixMediaError",
+                        "printedName": "FlixMediaSDK.FlixMediaError",
+                        "usr": "s:12FlixMediaSDK0aB5ErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12FlixMediaSDK0aB5ErrorO12unauthorizedyA2CmF",
+            "mangledName": "$s12FlixMediaSDK0aB5ErrorO12unauthorizedyA2CmF",
+            "moduleName": "FlixMediaSDK",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "tokenNotFound",
+            "printedName": "tokenNotFound",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(FlixMediaSDK.FlixMediaError.Type) -> FlixMediaSDK.FlixMediaError",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "FlixMediaError",
+                    "printedName": "FlixMediaSDK.FlixMediaError",
+                    "usr": "s:12FlixMediaSDK0aB5ErrorO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "FlixMediaSDK.FlixMediaError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FlixMediaError",
+                        "printedName": "FlixMediaSDK.FlixMediaError",
+                        "usr": "s:12FlixMediaSDK0aB5ErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12FlixMediaSDK0aB5ErrorO13tokenNotFoundyA2CmF",
+            "mangledName": "$s12FlixMediaSDK0aB5ErrorO13tokenNotFoundyA2CmF",
+            "moduleName": "FlixMediaSDK",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "refreshFailed",
+            "printedName": "refreshFailed",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(FlixMediaSDK.FlixMediaError.Type) -> FlixMediaSDK.FlixMediaError",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "FlixMediaError",
+                    "printedName": "FlixMediaSDK.FlixMediaError",
+                    "usr": "s:12FlixMediaSDK0aB5ErrorO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "FlixMediaSDK.FlixMediaError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FlixMediaError",
+                        "printedName": "FlixMediaSDK.FlixMediaError",
+                        "usr": "s:12FlixMediaSDK0aB5ErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12FlixMediaSDK0aB5ErrorO13refreshFailedyA2CmF",
+            "mangledName": "$s12FlixMediaSDK0aB5ErrorO13refreshFailedyA2CmF",
+            "moduleName": "FlixMediaSDK",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "notInitialized",
+            "printedName": "notInitialized",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(FlixMediaSDK.FlixMediaError.Type) -> FlixMediaSDK.FlixMediaError",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "FlixMediaError",
+                    "printedName": "FlixMediaSDK.FlixMediaError",
+                    "usr": "s:12FlixMediaSDK0aB5ErrorO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "FlixMediaSDK.FlixMediaError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FlixMediaError",
+                        "printedName": "FlixMediaSDK.FlixMediaError",
+                        "usr": "s:12FlixMediaSDK0aB5ErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12FlixMediaSDK0aB5ErrorO14notInitializedyA2CmF",
+            "mangledName": "$s12FlixMediaSDK0aB5ErrorO14notInitializedyA2CmF",
+            "moduleName": "FlixMediaSDK",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "missingCredentials",
+            "printedName": "missingCredentials",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(FlixMediaSDK.FlixMediaError.Type) -> FlixMediaSDK.FlixMediaError",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "FlixMediaError",
+                    "printedName": "FlixMediaSDK.FlixMediaError",
+                    "usr": "s:12FlixMediaSDK0aB5ErrorO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "FlixMediaSDK.FlixMediaError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FlixMediaError",
+                        "printedName": "FlixMediaSDK.FlixMediaError",
+                        "usr": "s:12FlixMediaSDK0aB5ErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12FlixMediaSDK0aB5ErrorO18missingCredentialsyA2CmF",
+            "mangledName": "$s12FlixMediaSDK0aB5ErrorO18missingCredentialsyA2CmF",
+            "moduleName": "FlixMediaSDK",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "invalidStatusCode",
+            "printedName": "invalidStatusCode",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(FlixMediaSDK.FlixMediaError.Type) -> (Swift.Int) -> FlixMediaSDK.FlixMediaError",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.Int) -> FlixMediaSDK.FlixMediaError",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FlixMediaError",
+                        "printedName": "FlixMediaSDK.FlixMediaError",
+                        "usr": "s:12FlixMediaSDK0aB5ErrorO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "FlixMediaSDK.FlixMediaError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FlixMediaError",
+                        "printedName": "FlixMediaSDK.FlixMediaError",
+                        "usr": "s:12FlixMediaSDK0aB5ErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12FlixMediaSDK0aB5ErrorO17invalidStatusCodeyACSicACmF",
+            "mangledName": "$s12FlixMediaSDK0aB5ErrorO17invalidStatusCodeyACSicACmF",
+            "moduleName": "FlixMediaSDK",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "serverError",
+            "printedName": "serverError",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(FlixMediaSDK.FlixMediaError.Type) -> (Swift.String) -> FlixMediaSDK.FlixMediaError",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.String) -> FlixMediaSDK.FlixMediaError",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FlixMediaError",
+                        "printedName": "FlixMediaSDK.FlixMediaError",
+                        "usr": "s:12FlixMediaSDK0aB5ErrorO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(message: Swift.String)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "String",
+                            "printedName": "Swift.String",
+                            "usr": "s:SS"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "FlixMediaSDK.FlixMediaError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FlixMediaError",
+                        "printedName": "FlixMediaSDK.FlixMediaError",
+                        "usr": "s:12FlixMediaSDK0aB5ErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12FlixMediaSDK0aB5ErrorO06serverD0yACSS_tcACmF",
+            "mangledName": "$s12FlixMediaSDK0aB5ErrorO06serverD0yACSS_tcACmF",
+            "moduleName": "FlixMediaSDK",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "malformedURL",
+            "printedName": "malformedURL",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(FlixMediaSDK.FlixMediaError.Type) -> FlixMediaSDK.FlixMediaError",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "FlixMediaError",
+                    "printedName": "FlixMediaSDK.FlixMediaError",
+                    "usr": "s:12FlixMediaSDK0aB5ErrorO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "FlixMediaSDK.FlixMediaError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FlixMediaError",
+                        "printedName": "FlixMediaSDK.FlixMediaError",
+                        "usr": "s:12FlixMediaSDK0aB5ErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12FlixMediaSDK0aB5ErrorO12malformedURLyA2CmF",
+            "mangledName": "$s12FlixMediaSDK0aB5ErrorO12malformedURLyA2CmF",
+            "moduleName": "FlixMediaSDK",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "errorDescription",
+            "printedName": "errorDescription",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:12FlixMediaSDK0aB5ErrorO16errorDescriptionSSSgvp",
+            "mangledName": "$s12FlixMediaSDK0aB5ErrorO16errorDescriptionSSSgvp",
+            "moduleName": "FlixMediaSDK",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12FlixMediaSDK0aB5ErrorO16errorDescriptionSSSgvg",
+                "mangledName": "$s12FlixMediaSDK0aB5ErrorO16errorDescriptionSSSgvg",
+                "moduleName": "FlixMediaSDK",
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:12FlixMediaSDK0aB5ErrorO",
+        "mangledName": "$s12FlixMediaSDK0aB5ErrorO",
+        "moduleName": "FlixMediaSDK",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Error",
+            "printedName": "Error",
+            "usr": "s:s5ErrorP",
+            "mangledName": "$ss5ErrorP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "LocalizedError",
+            "printedName": "LocalizedError",
+            "usr": "s:10Foundation14LocalizedErrorP",
+            "mangledName": "$s10Foundation14LocalizedErrorP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "AppTrackingTransparency",
+        "printedName": "AppTrackingTransparency",
+        "declKind": "Import",
+        "moduleName": "FlixMediaSDK"
+      },
+      {
+        "kind": "Import",
+        "name": "AdSupport",
+        "printedName": "AdSupport",
         "declKind": "Import",
         "moduleName": "FlixMediaSDK"
       },
@@ -15,6 +814,13 @@
         "kind": "Import",
         "name": "UIKit",
         "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "FlixMediaSDK"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
         "declKind": "Import",
         "moduleName": "FlixMediaSDK"
       },
@@ -101,7 +907,8 @@
             "mangledName": "$s12FlixMediaSDK24ProductRequestParametersV3mpn3ean6distId7isoCode05flIsoL05brand5title5price8currencyACSS_S8Stcfc",
             "moduleName": "FlixMediaSDK",
             "declAttributes": [
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "init_kind": "Designated"
           }
@@ -111,7 +918,8 @@
         "mangledName": "$s12FlixMediaSDK24ProductRequestParametersV",
         "moduleName": "FlixMediaSDK",
         "declAttributes": [
-          "AccessControl"
+          "AccessControl",
+          "RawDocComment"
         ],
         "conformances": [
           {
@@ -134,6 +942,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -219,7 +1034,10 @@
             "declKind": "EnumElement",
             "usr": "s:12FlixMediaSDK12WebViewStateO7loadingyA2CmF",
             "mangledName": "$s12FlixMediaSDK12WebViewStateO7loadingyA2CmF",
-            "moduleName": "FlixMediaSDK"
+            "moduleName": "FlixMediaSDK",
+            "declAttributes": [
+              "RawDocComment"
+            ]
           },
           {
             "kind": "Var",
@@ -256,7 +1074,10 @@
             "declKind": "EnumElement",
             "usr": "s:12FlixMediaSDK12WebViewStateO6loadedyA2CmF",
             "mangledName": "$s12FlixMediaSDK12WebViewStateO6loadedyA2CmF",
-            "moduleName": "FlixMediaSDK"
+            "moduleName": "FlixMediaSDK",
+            "declAttributes": [
+              "RawDocComment"
+            ]
           },
           {
             "kind": "Var",
@@ -306,7 +1127,10 @@
             "declKind": "EnumElement",
             "usr": "s:12FlixMediaSDK12WebViewStateO5erroryACs5Error_pcACmF",
             "mangledName": "$s12FlixMediaSDK12WebViewStateO5erroryACs5Error_pcACmF",
-            "moduleName": "FlixMediaSDK"
+            "moduleName": "FlixMediaSDK",
+            "declAttributes": [
+              "RawDocComment"
+            ]
           }
         ],
         "declKind": "Enum",
@@ -368,7 +1192,8 @@
             "mangledName": "$s12FlixMediaSDK20WebViewConfigurationV13productParams7baseURLAcA24ProductRequestParametersV_10Foundation0J0Vtcfc",
             "moduleName": "FlixMediaSDK",
             "declAttributes": [
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "init_kind": "Designated"
           }
@@ -402,6 +1227,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -606,6 +1438,42 @@
             "usr": "s:12FlixMediaSDK0A7WebViewV12updateUIView_7contextySo05WKWebE0C_7SwiftUI0G20RepresentableContextVyACGtF",
             "mangledName": "$s12FlixMediaSDK0A7WebViewV12updateUIView_7contextySo05WKWebE0C_7SwiftUI0G20RepresentableContextVyACGtF",
             "moduleName": "FlixMediaSDK",
+            "declAttributes": [
+              "Preconcurrency",
+              "Custom",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "dismantleUIView",
+            "printedName": "dismantleUIView(_:coordinator:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "WKWebView",
+                "printedName": "WebKit.WKWebView",
+                "usr": "c:objc(cs)WKWebView"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Coordinator",
+                "printedName": "FlixMediaSDK.FlixWebView.Coordinator",
+                "usr": "s:12FlixMediaSDK0A7WebViewV11CoordinatorC"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12FlixMediaSDK0A7WebViewV15dismantleUIView_11coordinatorySo05WKWebE0C_AC11CoordinatorCtFZ",
+            "mangledName": "$s12FlixMediaSDK0A7WebViewV15dismantleUIView_11coordinatorySo05WKWebE0C_AC11CoordinatorCtFZ",
+            "moduleName": "FlixMediaSDK",
+            "static": true,
             "declAttributes": [
               "Preconcurrency",
               "Custom",
@@ -1006,219 +1874,11 @@
         "moduleName": "FlixMediaSDK"
       },
       {
-        "kind": "TypeDecl",
-        "name": "FlixMedia",
-        "printedName": "FlixMedia",
-        "children": [
-          {
-            "kind": "Var",
-            "name": "shared",
-            "printedName": "shared",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "FlixMedia",
-                "printedName": "FlixMediaSDK.FlixMedia",
-                "usr": "s:12FlixMediaSDK0aB0C"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:12FlixMediaSDK0aB0C6sharedACvpZ",
-            "mangledName": "$s12FlixMediaSDK0aB0C6sharedACvpZ",
-            "moduleName": "FlixMediaSDK",
-            "static": true,
-            "declAttributes": [
-              "Final",
-              "HasInitialValue",
-              "HasStorage",
-              "AccessControl"
-            ],
-            "isLet": true,
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "FlixMedia",
-                    "printedName": "FlixMediaSDK.FlixMedia",
-                    "usr": "s:12FlixMediaSDK0aB0C"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:12FlixMediaSDK0aB0C6sharedACvgZ",
-                "mangledName": "$s12FlixMediaSDK0aB0C6sharedACvgZ",
-                "moduleName": "FlixMediaSDK",
-                "static": true,
-                "implicit": true,
-                "declAttributes": [
-                  "Final"
-                ],
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Function",
-            "name": "initialize",
-            "printedName": "initialize(username:password:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "s:12FlixMediaSDK0aB0C10initialize8username8passwordySS_SStYaKF",
-            "mangledName": "$s12FlixMediaSDK0aB0C10initialize8username8passwordySS_SStYaKF",
-            "moduleName": "FlixMediaSDK",
-            "declAttributes": [
-              "AccessControl",
-              "RawDocComment"
-            ],
-            "throwing": true,
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "loadHTML",
-            "printedName": "loadHTML(configuration:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "WebViewConfiguration",
-                "printedName": "FlixMediaSDK.WebViewConfiguration",
-                "usr": "s:12FlixMediaSDK20WebViewConfigurationV"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "s:12FlixMediaSDK0aB0C8loadHTML13configurationSSAA20WebViewConfigurationV_tYaKF",
-            "mangledName": "$s12FlixMediaSDK0aB0C8loadHTML13configurationSSAA20WebViewConfigurationV_tYaKF",
-            "moduleName": "FlixMediaSDK",
-            "declAttributes": [
-              "AccessControl",
-              "RawDocComment"
-            ],
-            "throwing": true,
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Var",
-            "name": "unownedExecutor",
-            "printedName": "unownedExecutor",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "UnownedSerialExecutor",
-                "printedName": "_Concurrency.UnownedSerialExecutor",
-                "usr": "s:Sce"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:12FlixMediaSDK0aB0C15unownedExecutorScevp",
-            "mangledName": "$s12FlixMediaSDK0aB0C15unownedExecutorScevp",
-            "moduleName": "FlixMediaSDK",
-            "implicit": true,
-            "intro_Macosx": "10.15",
-            "intro_iOS": "13.0",
-            "intro_tvOS": "13.0",
-            "intro_watchOS": "6.0",
-            "declAttributes": [
-              "Available",
-              "Available",
-              "Available",
-              "Available",
-              "Final",
-              "Nonisolated",
-              "Semantics"
-            ],
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "UnownedSerialExecutor",
-                    "printedName": "_Concurrency.UnownedSerialExecutor",
-                    "usr": "s:Sce"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:12FlixMediaSDK0aB0C15unownedExecutorScevg",
-                "mangledName": "$s12FlixMediaSDK0aB0C15unownedExecutorScevg",
-                "moduleName": "FlixMediaSDK",
-                "implicit": true,
-                "declAttributes": [
-                  "Final"
-                ],
-                "accessorKind": "get"
-              }
-            ]
-          }
-        ],
-        "declKind": "Class",
-        "usr": "s:12FlixMediaSDK0aB0C",
-        "mangledName": "$s12FlixMediaSDK0aB0C",
-        "moduleName": "FlixMediaSDK",
-        "declAttributes": [
-          "AccessControl",
-          "RawDocComment"
-        ],
-        "hasMissingDesignatedInitializers": true,
-        "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "Copyable",
-            "printedName": "Copyable",
-            "usr": "s:s8CopyableP",
-            "mangledName": "$ss8CopyableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Actor",
-            "printedName": "Actor",
-            "usr": "s:ScA",
-            "mangledName": "$sScA"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Sendable",
-            "printedName": "Sendable",
-            "usr": "s:s8SendableP",
-            "mangledName": "$ss8SendableP"
-          }
-        ]
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "FlixMediaSDK"
       },
       {
         "kind": "Import",
@@ -1226,518 +1886,6 @@
         "printedName": "Foundation",
         "declKind": "Import",
         "moduleName": "FlixMediaSDK"
-      },
-      {
-        "kind": "TypeDecl",
-        "name": "FlixMediaError",
-        "printedName": "FlixMediaError",
-        "children": [
-          {
-            "kind": "Var",
-            "name": "invalidResponse",
-            "printedName": "invalidResponse",
-            "children": [
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "(FlixMediaSDK.FlixMediaError.Type) -> FlixMediaSDK.FlixMediaError",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "FlixMediaError",
-                    "printedName": "FlixMediaSDK.FlixMediaError",
-                    "usr": "s:12FlixMediaSDK0aB5ErrorO"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Metatype",
-                    "printedName": "FlixMediaSDK.FlixMediaError.Type",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "FlixMediaError",
-                        "printedName": "FlixMediaSDK.FlixMediaError",
-                        "usr": "s:12FlixMediaSDK0aB5ErrorO"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "declKind": "EnumElement",
-            "usr": "s:12FlixMediaSDK0aB5ErrorO15invalidResponseyA2CmF",
-            "mangledName": "$s12FlixMediaSDK0aB5ErrorO15invalidResponseyA2CmF",
-            "moduleName": "FlixMediaSDK"
-          },
-          {
-            "kind": "Var",
-            "name": "emptyToken",
-            "printedName": "emptyToken",
-            "children": [
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "(FlixMediaSDK.FlixMediaError.Type) -> FlixMediaSDK.FlixMediaError",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "FlixMediaError",
-                    "printedName": "FlixMediaSDK.FlixMediaError",
-                    "usr": "s:12FlixMediaSDK0aB5ErrorO"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Metatype",
-                    "printedName": "FlixMediaSDK.FlixMediaError.Type",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "FlixMediaError",
-                        "printedName": "FlixMediaSDK.FlixMediaError",
-                        "usr": "s:12FlixMediaSDK0aB5ErrorO"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "declKind": "EnumElement",
-            "usr": "s:12FlixMediaSDK0aB5ErrorO10emptyTokenyA2CmF",
-            "mangledName": "$s12FlixMediaSDK0aB5ErrorO10emptyTokenyA2CmF",
-            "moduleName": "FlixMediaSDK"
-          },
-          {
-            "kind": "Var",
-            "name": "unauthorized",
-            "printedName": "unauthorized",
-            "children": [
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "(FlixMediaSDK.FlixMediaError.Type) -> FlixMediaSDK.FlixMediaError",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "FlixMediaError",
-                    "printedName": "FlixMediaSDK.FlixMediaError",
-                    "usr": "s:12FlixMediaSDK0aB5ErrorO"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Metatype",
-                    "printedName": "FlixMediaSDK.FlixMediaError.Type",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "FlixMediaError",
-                        "printedName": "FlixMediaSDK.FlixMediaError",
-                        "usr": "s:12FlixMediaSDK0aB5ErrorO"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "declKind": "EnumElement",
-            "usr": "s:12FlixMediaSDK0aB5ErrorO12unauthorizedyA2CmF",
-            "mangledName": "$s12FlixMediaSDK0aB5ErrorO12unauthorizedyA2CmF",
-            "moduleName": "FlixMediaSDK"
-          },
-          {
-            "kind": "Var",
-            "name": "tokenNotFound",
-            "printedName": "tokenNotFound",
-            "children": [
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "(FlixMediaSDK.FlixMediaError.Type) -> FlixMediaSDK.FlixMediaError",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "FlixMediaError",
-                    "printedName": "FlixMediaSDK.FlixMediaError",
-                    "usr": "s:12FlixMediaSDK0aB5ErrorO"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Metatype",
-                    "printedName": "FlixMediaSDK.FlixMediaError.Type",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "FlixMediaError",
-                        "printedName": "FlixMediaSDK.FlixMediaError",
-                        "usr": "s:12FlixMediaSDK0aB5ErrorO"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "declKind": "EnumElement",
-            "usr": "s:12FlixMediaSDK0aB5ErrorO13tokenNotFoundyA2CmF",
-            "mangledName": "$s12FlixMediaSDK0aB5ErrorO13tokenNotFoundyA2CmF",
-            "moduleName": "FlixMediaSDK"
-          },
-          {
-            "kind": "Var",
-            "name": "refreshFailed",
-            "printedName": "refreshFailed",
-            "children": [
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "(FlixMediaSDK.FlixMediaError.Type) -> FlixMediaSDK.FlixMediaError",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "FlixMediaError",
-                    "printedName": "FlixMediaSDK.FlixMediaError",
-                    "usr": "s:12FlixMediaSDK0aB5ErrorO"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Metatype",
-                    "printedName": "FlixMediaSDK.FlixMediaError.Type",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "FlixMediaError",
-                        "printedName": "FlixMediaSDK.FlixMediaError",
-                        "usr": "s:12FlixMediaSDK0aB5ErrorO"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "declKind": "EnumElement",
-            "usr": "s:12FlixMediaSDK0aB5ErrorO13refreshFailedyA2CmF",
-            "mangledName": "$s12FlixMediaSDK0aB5ErrorO13refreshFailedyA2CmF",
-            "moduleName": "FlixMediaSDK"
-          },
-          {
-            "kind": "Var",
-            "name": "notInitialized",
-            "printedName": "notInitialized",
-            "children": [
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "(FlixMediaSDK.FlixMediaError.Type) -> FlixMediaSDK.FlixMediaError",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "FlixMediaError",
-                    "printedName": "FlixMediaSDK.FlixMediaError",
-                    "usr": "s:12FlixMediaSDK0aB5ErrorO"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Metatype",
-                    "printedName": "FlixMediaSDK.FlixMediaError.Type",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "FlixMediaError",
-                        "printedName": "FlixMediaSDK.FlixMediaError",
-                        "usr": "s:12FlixMediaSDK0aB5ErrorO"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "declKind": "EnumElement",
-            "usr": "s:12FlixMediaSDK0aB5ErrorO14notInitializedyA2CmF",
-            "mangledName": "$s12FlixMediaSDK0aB5ErrorO14notInitializedyA2CmF",
-            "moduleName": "FlixMediaSDK"
-          },
-          {
-            "kind": "Var",
-            "name": "missingCredentials",
-            "printedName": "missingCredentials",
-            "children": [
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "(FlixMediaSDK.FlixMediaError.Type) -> FlixMediaSDK.FlixMediaError",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "FlixMediaError",
-                    "printedName": "FlixMediaSDK.FlixMediaError",
-                    "usr": "s:12FlixMediaSDK0aB5ErrorO"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Metatype",
-                    "printedName": "FlixMediaSDK.FlixMediaError.Type",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "FlixMediaError",
-                        "printedName": "FlixMediaSDK.FlixMediaError",
-                        "usr": "s:12FlixMediaSDK0aB5ErrorO"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "declKind": "EnumElement",
-            "usr": "s:12FlixMediaSDK0aB5ErrorO18missingCredentialsyA2CmF",
-            "mangledName": "$s12FlixMediaSDK0aB5ErrorO18missingCredentialsyA2CmF",
-            "moduleName": "FlixMediaSDK"
-          },
-          {
-            "kind": "Var",
-            "name": "invalidStatusCode",
-            "printedName": "invalidStatusCode",
-            "children": [
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "(FlixMediaSDK.FlixMediaError.Type) -> (Swift.Int) -> FlixMediaSDK.FlixMediaError",
-                "children": [
-                  {
-                    "kind": "TypeFunc",
-                    "name": "Function",
-                    "printedName": "(Swift.Int) -> FlixMediaSDK.FlixMediaError",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "FlixMediaError",
-                        "printedName": "FlixMediaSDK.FlixMediaError",
-                        "usr": "s:12FlixMediaSDK0aB5ErrorO"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Int",
-                        "printedName": "Swift.Int",
-                        "usr": "s:Si"
-                      }
-                    ]
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Metatype",
-                    "printedName": "FlixMediaSDK.FlixMediaError.Type",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "FlixMediaError",
-                        "printedName": "FlixMediaSDK.FlixMediaError",
-                        "usr": "s:12FlixMediaSDK0aB5ErrorO"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "declKind": "EnumElement",
-            "usr": "s:12FlixMediaSDK0aB5ErrorO17invalidStatusCodeyACSicACmF",
-            "mangledName": "$s12FlixMediaSDK0aB5ErrorO17invalidStatusCodeyACSicACmF",
-            "moduleName": "FlixMediaSDK"
-          },
-          {
-            "kind": "Var",
-            "name": "serverError",
-            "printedName": "serverError",
-            "children": [
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "(FlixMediaSDK.FlixMediaError.Type) -> (Swift.String) -> FlixMediaSDK.FlixMediaError",
-                "children": [
-                  {
-                    "kind": "TypeFunc",
-                    "name": "Function",
-                    "printedName": "(Swift.String) -> FlixMediaSDK.FlixMediaError",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "FlixMediaError",
-                        "printedName": "FlixMediaSDK.FlixMediaError",
-                        "usr": "s:12FlixMediaSDK0aB5ErrorO"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Tuple",
-                        "printedName": "(message: Swift.String)",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "String",
-                            "printedName": "Swift.String",
-                            "usr": "s:SS"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Metatype",
-                    "printedName": "FlixMediaSDK.FlixMediaError.Type",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "FlixMediaError",
-                        "printedName": "FlixMediaSDK.FlixMediaError",
-                        "usr": "s:12FlixMediaSDK0aB5ErrorO"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "declKind": "EnumElement",
-            "usr": "s:12FlixMediaSDK0aB5ErrorO06serverD0yACSS_tcACmF",
-            "mangledName": "$s12FlixMediaSDK0aB5ErrorO06serverD0yACSS_tcACmF",
-            "moduleName": "FlixMediaSDK"
-          },
-          {
-            "kind": "Var",
-            "name": "malformedURL",
-            "printedName": "malformedURL",
-            "children": [
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "(FlixMediaSDK.FlixMediaError.Type) -> FlixMediaSDK.FlixMediaError",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "FlixMediaError",
-                    "printedName": "FlixMediaSDK.FlixMediaError",
-                    "usr": "s:12FlixMediaSDK0aB5ErrorO"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Metatype",
-                    "printedName": "FlixMediaSDK.FlixMediaError.Type",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "FlixMediaError",
-                        "printedName": "FlixMediaSDK.FlixMediaError",
-                        "usr": "s:12FlixMediaSDK0aB5ErrorO"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "declKind": "EnumElement",
-            "usr": "s:12FlixMediaSDK0aB5ErrorO12malformedURLyA2CmF",
-            "mangledName": "$s12FlixMediaSDK0aB5ErrorO12malformedURLyA2CmF",
-            "moduleName": "FlixMediaSDK"
-          },
-          {
-            "kind": "Var",
-            "name": "errorDescription",
-            "printedName": "errorDescription",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "Swift.String?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "usr": "s:Sq"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:12FlixMediaSDK0aB5ErrorO16errorDescriptionSSSgvp",
-            "mangledName": "$s12FlixMediaSDK0aB5ErrorO16errorDescriptionSSSgvp",
-            "moduleName": "FlixMediaSDK",
-            "declAttributes": [
-              "AccessControl",
-              "RawDocComment"
-            ],
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "Swift.String?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "String",
-                        "printedName": "Swift.String",
-                        "usr": "s:SS"
-                      }
-                    ],
-                    "usr": "s:Sq"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:12FlixMediaSDK0aB5ErrorO16errorDescriptionSSSgvg",
-                "mangledName": "$s12FlixMediaSDK0aB5ErrorO16errorDescriptionSSSgvg",
-                "moduleName": "FlixMediaSDK",
-                "accessorKind": "get"
-              }
-            ]
-          }
-        ],
-        "declKind": "Enum",
-        "usr": "s:12FlixMediaSDK0aB5ErrorO",
-        "mangledName": "$s12FlixMediaSDK0aB5ErrorO",
-        "moduleName": "FlixMediaSDK",
-        "declAttributes": [
-          "AccessControl",
-          "RawDocComment"
-        ],
-        "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "Copyable",
-            "printedName": "Copyable",
-            "usr": "s:s8CopyableP",
-            "mangledName": "$ss8CopyableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Error",
-            "printedName": "Error",
-            "usr": "s:s5ErrorP",
-            "mangledName": "$ss5ErrorP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "LocalizedError",
-            "printedName": "LocalizedError",
-            "usr": "s:10Foundation14LocalizedErrorP",
-            "mangledName": "$s10Foundation14LocalizedErrorP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Sendable",
-            "printedName": "Sendable",
-            "usr": "s:s8SendableP",
-            "mangledName": "$ss8SendableP"
-          }
-        ]
       },
       {
         "kind": "Import",
@@ -1776,7 +1924,8 @@
             "moduleName": "FlixMediaSDK",
             "declAttributes": [
               "Custom",
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "init_kind": "Designated"
           },
@@ -1804,7 +1953,8 @@
             "declAttributes": [
               "Custom",
               "Final",
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "throwing": true,
             "funcSelfKind": "NonMutating"
@@ -1859,20 +2009,6 @@
       },
       {
         "kind": "Import",
-        "name": "AppTrackingTransparency",
-        "printedName": "AppTrackingTransparency",
-        "declKind": "Import",
-        "moduleName": "FlixMediaSDK"
-      },
-      {
-        "kind": "Import",
-        "name": "AdSupport",
-        "printedName": "AdSupport",
-        "declKind": "Import",
-        "moduleName": "FlixMediaSDK"
-      },
-      {
-        "kind": "Import",
         "name": "UIKit",
         "printedName": "UIKit",
         "declKind": "Import",
@@ -1880,8 +2016,8 @@
       },
       {
         "kind": "Import",
-        "name": "Foundation",
-        "printedName": "Foundation",
+        "name": "UIKit",
+        "printedName": "UIKit",
         "declKind": "Import",
         "moduleName": "FlixMediaSDK"
       },
@@ -1979,6 +2115,13 @@
             "printedName": "CustomDebugStringConvertible",
             "usr": "s:s28CustomDebugStringConvertibleP",
             "mangledName": "$ss28CustomDebugStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       }
@@ -1987,102 +2130,116 @@
   },
   "ConstValues": [
     {
+      "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMediaSDK\/FlixMediaSDK\/Core\/FlixMedia.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1945,
+      "length": 5,
+      "value": "false"
+    },
+    {
       "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMediaSDK\/FlixMediaSDK\/Services\/ContentService.swift",
       "kind": "BooleanLiteral",
-      "offset": 1814,
+      "offset": 2332,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMediaSDK\/FlixMediaSDK\/UI\/FlixWebView.swift",
       "kind": "FloatLiteral",
-      "offset": 6918,
+      "offset": 7874,
       "length": 4,
       "value": "0.05"
     },
     {
       "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMediaSDK\/FlixMediaSDK\/UI\/FlixWebView.swift",
       "kind": "IntegerLiteral",
-      "offset": 7028,
+      "offset": 7984,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMediaSDK\/FlixMediaSDK\/UI\/FlixWebView.swift",
       "kind": "IntegerLiteral",
-      "offset": 7075,
+      "offset": 8031,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMediaSDK\/FlixMediaSDK\/UI\/FlixWebView.swift",
       "kind": "IntegerLiteral",
-      "offset": 12264,
+      "offset": 13455,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMediaSDK\/FlixMediaSDK\/UI\/FlixWebView.swift",
       "kind": "StringLiteral",
-      "offset": 12309,
+      "offset": 13500,
       "length": 24,
       "value": "\"nativeAppResizeHandler\""
     },
     {
       "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMediaSDK\/FlixMediaSDK\/UI\/FlixWebView.swift",
       "kind": "StringLiteral",
-      "offset": 12376,
+      "offset": 13567,
       "length": 18,
       "value": "\"scrollToViewport\""
     },
     {
       "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMediaSDK\/FlixMediaSDK\/UI\/FlixWebView.swift",
       "kind": "StringLiteral",
-      "offset": 12424,
+      "offset": 13615,
       "length": 13,
       "value": "\"viewportTop\""
     },
     {
       "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMediaSDK\/FlixMediaSDK\/UI\/FlixWebView.swift",
       "kind": "StringLiteral",
-      "offset": 12464,
+      "offset": 13655,
       "length": 10,
       "value": "\"animated\""
+    },
+    {
+      "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMediaSDK\/FlixMediaSDK\/UI\/HTMLContentProcessor.swift",
+      "kind": "StringLiteral",
+      "offset": 541,
+      "length": 7,
+      "value": "\"1.0.3\""
+    },
+    {
+      "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMediaSDK\/FlixMediaSDK\/Utils\/KeychainHelper.swift",
+      "kind": "StringLiteral",
+      "offset": 1645,
+      "length": 24,
+      "value": "\"com.flixmedia.sdk.meta\""
     },
     {
       "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMediaSDK\/FlixMediaSDK\/Utils\/KeychainHelper.swift",
       "kind": "StringLiteral",
       "offset": 1706,
-      "length": 19,
-      "value": "\"com.flixmedia.sdk\""
+      "length": 13,
+      "value": "\"environment\""
     },
     {
       "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMediaSDK\/FlixMediaSDK\/Utils\/KeychainHelper.swift",
       "kind": "StringLiteral",
-      "offset": 1765,
+      "offset": 1753,
+      "length": 10,
+      "value": "\"username\""
+    },
+    {
+      "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMediaSDK\/FlixMediaSDK\/Utils\/KeychainHelper.swift",
+      "kind": "StringLiteral",
+      "offset": 1913,
       "length": 10,
       "value": "\"id_token\""
     },
     {
       "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMediaSDK\/FlixMediaSDK\/Utils\/KeychainHelper.swift",
       "kind": "StringLiteral",
-      "offset": 1813,
+      "offset": 1961,
       "length": 15,
       "value": "\"refresh_token\""
-    },
-    {
-      "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMediaSDK\/FlixMediaSDK\/Utils\/KeychainHelper.swift",
-      "kind": "StringLiteral",
-      "offset": 1862,
-      "length": 10,
-      "value": "\"username\""
-    },
-    {
-      "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMediaSDK\/FlixMediaSDK\/Services\/AuthenticationService.swift",
-      "kind": "StringLiteral",
-      "offset": 576,
-      "length": 61,
-      "value": "\"https:\/\/api-syndication.flix360.io\/alpha\/authenticate\/token\""
     }
   ]
 }

@@ -45,7 +45,7 @@ class _FlixInpageHtmlViewState extends State<FlixInpageHtmlView> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    final newPos = Scrollable.of(context)?.position;
+    final newPos = Scrollable.of(context).position;
     if (_scrollPosition != newPos) {
       _scrollPosition?.removeListener(_onParentScrolled);
       _scrollPosition = newPos;
@@ -70,10 +70,15 @@ class _FlixInpageHtmlViewState extends State<FlixInpageHtmlView> {
   }
 
   Future<void> _loadHtml() async {
-    final html = await FlixBridge.getInpageHtml(productParams: widget.productParams);
+    final html = await FlixBridge.getInpageHtml(
+      productParams: widget.productParams,
+      baseURL: widget.baseURL,
+    );
     if (!mounted) return;
     setState(() {
-      _html = html ?? '<html><body><div style="padding:12px;color:#777">No HTML</div></body></html>';
+      _html =
+          html ??
+          '<html><body><div style="padding:12px;color:#777">No HTML</div></body></html>';
     });
   }
 
@@ -86,7 +91,7 @@ class _FlixInpageHtmlViewState extends State<FlixInpageHtmlView> {
 
   Rect _viewportGlobalRect() {
     final scrollable = Scrollable.of(context);
-    final ro = scrollable?.context.findRenderObject();
+    final ro = scrollable.context.findRenderObject();
     if (ro is! RenderBox || !ro.attached) return Rect.zero;
     final topLeft = ro.localToGlobal(Offset.zero);
     return topLeft & ro.size;
@@ -104,7 +109,8 @@ class _FlixInpageHtmlViewState extends State<FlixInpageHtmlView> {
     final double topOffset = (intersection.top - w.top).clamp(0.0, w.height);
     final double visibleHeight = intersection.height.clamp(0.0, w.height);
 
-    final js = """
+    final js =
+        """
       (function(){
         try {
           if (typeof window.flixtracking.onScrollFromApp === 'function') {
@@ -119,7 +125,10 @@ class _FlixInpageHtmlViewState extends State<FlixInpageHtmlView> {
     } catch (_) {}
   }
 
-  Future<void> _scrollViewportTo(double viewportTop, {bool animated = true}) async {
+  Future<void> _scrollViewportTo(
+    double viewportTop, {
+    bool animated = true,
+  }) async {
     if (widget.parentScrollController == null) {
       return;
     }
@@ -135,15 +144,18 @@ class _FlixInpageHtmlViewState extends State<FlixInpageHtmlView> {
     final appBarHeight = Scaffold.of(context).appBarMaxHeight ?? 0;
 
     final localOffset = box.localToGlobal(Offset(0, viewportTop));
-    final scrollOffset = widget.parentScrollController!.offset
-                        + localOffset.dy
-                        - mediaTop
-                        - appBarHeight;
+    final scrollOffset =
+        widget.parentScrollController!.offset +
+        localOffset.dy -
+        mediaTop -
+        appBarHeight;
 
     try {
       widget.parentScrollController!.animateTo(
         scrollOffset,
-        duration: animated ? const Duration(milliseconds: 250) : const Duration(milliseconds: 1),
+        duration: animated
+            ? const Duration(milliseconds: 250)
+            : const Duration(milliseconds: 1),
         curve: Curves.easeInOut,
       );
     } catch (e) {
@@ -168,10 +180,21 @@ class _FlixInpageHtmlViewState extends State<FlixInpageHtmlView> {
           disableVerticalScroll: true,
           disableHorizontalScroll: true,
           supportZoom: false,
+          allowsInlineMediaPlayback: true,
+          mediaPlaybackRequiresUserGesture: false,
           transparentBackground: false,
           isInspectable: true,
         ),
         initialUserScripts: UnmodifiableListView<UserScript>([
+          UserScript(
+            source: flixTrackingBridgeJS,
+            injectionTime: UserScriptInjectionTime.AT_DOCUMENT_START,
+          ),
+          // if (Platform.isAndroid)
+          //   UserScript(
+          //     source: blockAutoplayAndroidJS,
+          //     injectionTime: UserScriptInjectionTime.AT_DOCUMENT_START,
+          //   ),
           UserScript(
             source: resizeObserverJS,
             injectionTime: UserScriptInjectionTime.AT_DOCUMENT_END,
@@ -195,7 +218,9 @@ class _FlixInpageHtmlViewState extends State<FlixInpageHtmlView> {
               final newH = max(1.0, (args.first as num).toDouble());
               if (newH != _height && mounted) {
                 setState(() => _height = newH);
-                WidgetsBinding.instance.addPostFrameCallback((_) => _sendViewportMetrics());
+                WidgetsBinding.instance.addPostFrameCallback(
+                  (_) => _sendViewportMetrics(),
+                );
               }
               return null;
             },
@@ -205,6 +230,7 @@ class _FlixInpageHtmlViewState extends State<FlixInpageHtmlView> {
             callback: (args) {
               if (args.isEmpty) return null;
               final url = args.first.toString();
+              if (!shouldHandleAsExternalLink(url)) return null;
               handleExternalLink(url, context);
               return null;
             },
@@ -233,16 +259,19 @@ class _FlixInpageHtmlViewState extends State<FlixInpageHtmlView> {
         },
         shouldOverrideUrlLoading: (controller, navigationAction) async {
           final url = navigationAction.request.url?.toString() ?? '';
-          if (url.endsWith('.png') || url.endsWith('.pdf') || url.endsWith('.zip') || url.endsWith('.jpg')) {
+          if (shouldHandleAsExternalLink(url)) {
             return NavigationActionPolicy.CANCEL;
           }
           return NavigationActionPolicy.ALLOW;
         },
         onLoadStop: (c, url) async {
           await c.evaluateJavascript(
-            source: "try { window.flutter_inappwebview.callHandler('onResize', document.body.scrollHeight); } catch(e){}",
+            source:
+                "try { window.flutter_inappwebview.callHandler('onResize', document.body.scrollHeight); } catch(e){}",
           );
-          WidgetsBinding.instance.addPostFrameCallback((_) => _sendViewportMetrics());
+          WidgetsBinding.instance.addPostFrameCallback(
+            (_) => _sendViewportMetrics(),
+          );
         },
       ),
     );

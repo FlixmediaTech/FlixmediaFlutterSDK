@@ -1,4 +1,4 @@
-import Flutter
+@preconcurrency import Flutter
 import UIKit
 import FlixMediaSDK
 
@@ -8,75 +8,97 @@ public class FlixInpagePlugin: NSObject, FlutterPlugin {
         let instance = FlixInpagePlugin()
         registrar.addMethodCallDelegate(instance, channel: channel)
     }
-    
+
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
         switch call.method {
         case "initialize":
-            Task {
-                do {
-                    guard
-                        let args = call.arguments as? [String: Any],
-                        let username = args["username"] as? String,
-                        let password = args["password"] as? String else {
-                        result(FlutterError(code: "ARG", message: "Missing credentials", details: nil))
-                        return
-                    }
-                    try await FlixMedia.shared.initialize(username: username, password: password)
-                    result(nil)
-                } catch {
-                    result(FlutterError(code: "INIT", message: error.localizedDescription, details: nil))
-                }
-            }
+            handleInitialize(call: call, result: result)
         case "getInpageHtml":
-            guard let dict = call.arguments as? [String: Any],
-                  let prod = dict["productParams"] as? [String: Any] else {
-                result(FlutterError(code: "ARG", message: "Missing productParams", details: nil))
-                return
-            }
-            buildFlixHTML(productParams: prod) { html, error in
-                if let e = error {
-                    result(FlutterError(code: "HTML", message: e.localizedDescription, details: nil))
-                } else {
-                    result(html ?? "")
-                }
-            }
-            
+            handleGetInpageHtml(call: call, result: result)
         default:
             result(FlutterMethodNotImplemented)
         }
     }
-    
-    private func buildFlixHTML(productParams: [String: Any],
-                               completion: @escaping (String?, Error?) -> Void) {
+
+    private func handleInitialize(call: FlutterMethodCall, result: @escaping FlutterResult) {
+        guard
+            let args = call.arguments as? [String: Any],
+            let username = args["username"] as? String,
+            let password = args["password"] as? String
+        else {
+            result(FlutterError(code: "ARG", message: "Missing credentials", details: nil))
+            return
+        }
+
+        let useSandbox = args["useSandbox"] as? Bool ?? false
+
         Task {
             do {
-                let data = try JSONSerialization.data(withJSONObject: productParams, options: [])
-                let productParamsDTO = try JSONDecoder().decode(ProductRequestParametersDTO.self, from: data)
-                
-                let productParams = ProductRequestParameters(mpn: productParamsDTO.mpn ?? "",
-                                                             ean: productParamsDTO.ean ?? "",
-                                                             distId: productParamsDTO.distributorId ?? "",
-                                                             isoCode: productParamsDTO.isoCode ?? "",
-                                                             flIsoCode: productParamsDTO.flIsoCode ?? "",
-                                                             brand: productParamsDTO.brand ?? "",
-                                                             title: productParamsDTO.title ?? "",
-                                                             price: productParamsDTO.price ?? "",
-                                                             currency: productParamsDTO.currency ?? "")
-                
-                let config = WebViewConfiguration(productParams: productParams, baseURL: URL(string: "https://www.example.com")!)
-                let html = try await FlixMedia.shared.loadHTML(configuration: config)
-                completion(html, nil)
+                try await FlixMedia.shared.initialize(username: username, password: password, useSandbox: useSandbox)
+                await MainActor.run { result(nil) }
             } catch {
-                completion(nil, error)
+                await MainActor.run {
+                    result(FlutterError(code: "INIT", message: error.localizedDescription, details: nil))
+                }
             }
         }
     }
+
+    private func handleGetInpageHtml(call: FlutterMethodCall, result: @escaping FlutterResult) {
+        guard
+            let args = call.arguments as? [String: Any],
+            let rawProductParams = args["productParams"] as? [String: Any]
+        else {
+            result(FlutterError(code: "ARG", message: "Missing productParams", details: nil))
+            return
+        }
+
+        let productParamsDTO: ProductRequestParametersDTO
+        do {
+            let data = try JSONSerialization.data(withJSONObject: rawProductParams, options: [])
+            productParamsDTO = try JSONDecoder().decode(ProductRequestParametersDTO.self, from: data)
+        } catch {
+            result(FlutterError(code: "ARG", message: "Invalid productParams", details: error.localizedDescription))
+            return
+        }
+
+        let baseURLString = (args["baseURL"] as? String)?.trimmingCharacters(in: .whitespacesAndNewlines)
+        let baseURL = URL(string: baseURLString ?? "") ?? URL(string: "https://www.example.com")!
+
+        Task {
+            do {
+                let html = try await buildFlixHTML(productParamsDTO: productParamsDTO, baseURL: baseURL)
+                await MainActor.run { result(html) }
+            } catch {
+                await MainActor.run {
+                    result(FlutterError(code: "HTML", message: error.localizedDescription, details: nil))
+                }
+            }
+        }
+    }
+
+    private func buildFlixHTML(productParamsDTO: ProductRequestParametersDTO, baseURL: URL) async throws -> String {
+        let productParams = ProductRequestParameters(
+            mpn: productParamsDTO.mpn ?? "",
+            ean: productParamsDTO.ean ?? "",
+            distId: productParamsDTO.distId ?? "",
+            isoCode: productParamsDTO.isoCode ?? "",
+            flIsoCode: productParamsDTO.flIsoCode ?? "",
+            brand: productParamsDTO.brand ?? "",
+            title: productParamsDTO.title ?? "",
+            price: productParamsDTO.price ?? "",
+            currency: productParamsDTO.currency ?? ""
+        )
+
+        let config = WebViewConfiguration(productParams: productParams, baseURL: baseURL)
+        return try await FlixMedia.shared.loadHTML(configuration: config)
+    }
 }
 
-struct ProductRequestParametersDTO: Decodable {
+private struct ProductRequestParametersDTO: Decodable, Sendable {
     let mpn: String?
     let ean: String?
-    let distributorId: String?
+    let distId: String?
     let isoCode: String?
     let flIsoCode: String?
     let brand: String?
@@ -85,28 +107,54 @@ struct ProductRequestParametersDTO: Decodable {
     let currency: String?
 
     enum CodingKeys: String, CodingKey {
-        case mpn, ean, distributorId, isoCode, flIsoCode, brand, title, price, currency
+        case mpn
+        case ean
+        case distId
+        case distributorId
+        case isoCode
+        case flIsoCode
+        case brand
+        case title
+        case price
+        case currency
     }
 
     init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
+
         mpn = try c.decodeIfPresent(String.self, forKey: .mpn)
         ean = try c.decodeIfPresent(String.self, forKey: .ean)
-
-        // distributorId może przyjść jako "6" albo 6
-        if let s = try? c.decode(String.self, forKey: .distributorId) {
-            distributorId = s
-        } else if let n = try? c.decode(Int.self, forKey: .distributorId) {
-            distributorId = String(n)
-        } else {
-            distributorId = nil
-        }
-
         isoCode = try c.decodeIfPresent(String.self, forKey: .isoCode)
         flIsoCode = try c.decodeIfPresent(String.self, forKey: .flIsoCode)
         brand = try c.decodeIfPresent(String.self, forKey: .brand)
         title = try c.decodeIfPresent(String.self, forKey: .title)
-        price = try c.decodeIfPresent(String.self, forKey: .price)
         currency = try c.decodeIfPresent(String.self, forKey: .currency)
+
+        if let dist = ProductRequestParametersDTO.decodeFlexibleString(c, key: .distId) {
+            distId = dist
+        } else {
+            distId = ProductRequestParametersDTO.decodeFlexibleString(c, key: .distributorId)
+        }
+
+        price = ProductRequestParametersDTO.decodeFlexibleString(c, key: .price)
+    }
+
+    private static func decodeFlexibleString(
+        _ container: KeyedDecodingContainer<CodingKeys>,
+        key: CodingKeys
+    ) -> String? {
+        if let value = try? container.decodeIfPresent(String.self, forKey: key) {
+            return value
+        }
+        if let value = try? container.decodeIfPresent(Int.self, forKey: key) {
+            return String(value)
+        }
+        if let value = try? container.decodeIfPresent(Double.self, forKey: key) {
+            return String(value)
+        }
+        if let value = try? container.decodeIfPresent(Bool.self, forKey: key) {
+            return String(value)
+        }
+        return nil
     }
 }
