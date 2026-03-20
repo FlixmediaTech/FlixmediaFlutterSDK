@@ -64,32 +64,16 @@ const String linkHandlerJS = r"""
 """;
 
 const String resizeObserverJS = r"""
+        var lastHeight = 0;
         function sendResizeMessage() {
-            try { 
-              window.flutter_inappwebview.callHandler('onResize', document.body.scrollHeight); 
+            try {
+              var h = document.body.scrollHeight;
+              if (h === lastHeight) return;
+              lastHeight = h;
+              window.flutter_inappwebview.callHandler('onResize', h);
             } catch (e) {}
         }
-        const observer = new MutationObserver(function(mutations) { sendResizeMessage(); });
-        observer.observe(document.body, { childList: true, subtree: true, attributes: true });
+        const observer = new ResizeObserver(function(entries) { sendResizeMessage(); });
+        observer.observe(document.body);
         window.addEventListener("load", sendResizeMessage);
-""";
-
-const String blockAutoplayAndroidJS = r"""
-        (function() {
-          function lockVideos() {
-            var videos = document.querySelectorAll('video');
-            for (var i = 0; i < videos.length; i++) {
-              var v = videos[i];
-              try {
-                v.autoplay = false;
-                v.removeAttribute('autoplay');
-                v.pause();
-              } catch (e) {}
-            }
-          }
-
-          lockVideos();
-          var observer = new MutationObserver(function() { lockVideos(); });
-          observer.observe(document.documentElement, { childList: true, subtree: true });
-        })();
 """;

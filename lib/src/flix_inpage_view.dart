@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:math';
 import 'dart:collection';
-import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'flix_bridge.dart';
@@ -14,6 +13,7 @@ class FlixInpageHtmlView extends StatefulWidget {
   final String? baseURL;
   final ScrollController? parentScrollController;
   final FlixInpageHtmlViewController? controller;
+  final void Function(Object error)? onError;
 
   const FlixInpageHtmlView({
     super.key,
@@ -21,6 +21,7 @@ class FlixInpageHtmlView extends StatefulWidget {
     this.baseURL,
     this.parentScrollController,
     this.controller,
+    this.onError,
   });
 
   @override
@@ -70,16 +71,21 @@ class _FlixInpageHtmlViewState extends State<FlixInpageHtmlView> {
   }
 
   Future<void> _loadHtml() async {
-    final html = await FlixBridge.getInpageHtml(
-      productParams: widget.productParams,
-      baseURL: widget.baseURL,
-    );
-    if (!mounted) return;
-    setState(() {
-      _html =
-          html ??
-          '<html><body><div style="padding:12px;color:#777">No HTML</div></body></html>';
-    });
+    try {
+      final html = await FlixBridge.getInpageHtml(
+        productParams: widget.productParams,
+        baseURL: widget.baseURL,
+      );
+      if (!mounted) return;
+      setState(() {
+        _html =
+            html ??
+            '<html><body><div style="padding:12px;color:#777">No HTML</div></body></html>';
+      });
+    } catch (e) {
+      if (!mounted) return;
+      widget.onError?.call(e);
+    }
   }
 
   Rect _webViewGlobalRect() {
@@ -181,7 +187,7 @@ class _FlixInpageHtmlViewState extends State<FlixInpageHtmlView> {
           disableHorizontalScroll: true,
           supportZoom: false,
           allowsInlineMediaPlayback: true,
-          mediaPlaybackRequiresUserGesture: false,
+          mediaPlaybackRequiresUserGesture: true,
           transparentBackground: false,
           isInspectable: true,
         ),
@@ -190,11 +196,6 @@ class _FlixInpageHtmlViewState extends State<FlixInpageHtmlView> {
             source: flixTrackingBridgeJS,
             injectionTime: UserScriptInjectionTime.AT_DOCUMENT_START,
           ),
-          // if (Platform.isAndroid)
-          //   UserScript(
-          //     source: blockAutoplayAndroidJS,
-          //     injectionTime: UserScriptInjectionTime.AT_DOCUMENT_START,
-          //   ),
           UserScript(
             source: resizeObserverJS,
             injectionTime: UserScriptInjectionTime.AT_DOCUMENT_END,
