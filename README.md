@@ -1,6 +1,6 @@
-# FlixMedia Flutter Plugin
+# FlixMedia Flutter SDK
 
-The **FlixMedia Flutter Plugin** provides access to the FlixMedia SDK inside Flutter apps (iOS and Android).  
+The **FlixMedia Flutter SDK** provides access to the FlixMedia SDK inside Flutter apps (iOS and Android).  
 It allows you to display syndicated product content directly in Flutter using a simple widget.
 
 ## Features
