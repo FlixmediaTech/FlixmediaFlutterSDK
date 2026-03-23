@@ -19,8 +19,9 @@ It allows you to display syndicated product content directly in Flutter using a 
 - Swift 5  
 
 ## Installation
-1. Copy the **`flix_inpage`** plugin folder into your Flutter project (at the same level as your app folder).  
-2. In your pubspec.yaml, add the plugin using a local path:
+1. Download and extract the **`flix_inpage`** package from Releases section
+2. Copy the **`flix_inpage`** plugin folder into your Flutter project (at the same level as your app folder).  
+3. In your pubspec.yaml, add the plugin using a local path:
 ```
 dependencies:
   flutter:
@@ -28,7 +29,7 @@ dependencies:
   flix_inpage:
     path: ../flix_inpage
 ```
-3. Android support is available, but requires the FlixMedia Android SDK **AAR** to be published to your local Maven repository (`mavenLocal`) before building (the plugin resolves `com.flixmedia:flixmediasdk:1.0.4` from `mavenLocal()`).
+4. Android support is available, but requires the FlixMedia Android SDK **AAR** to be published to your local Maven repository (`mavenLocal`) before building (the plugin resolves `com.flixmedia:flixmediasdk:1.0.4` from `mavenLocal()`).
 
 ## Initialization
 Before rendering any content, you must initialize the SDK with your FlixMedia credentials.
