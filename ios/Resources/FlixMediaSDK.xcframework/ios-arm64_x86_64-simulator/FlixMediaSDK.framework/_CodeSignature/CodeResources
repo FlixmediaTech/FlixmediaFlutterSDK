@@ -6,47 +6,47 @@
 	<dict>
 		<key>Info.plist</key>
 		<data>
-		v/BEzqrQJ4u0KnV4k8S2CVU1eHw=
+		Ta1fyGRbXTJQISFd9JKvxrmX3wk=
 		</data>
 		<key>Modules/FlixMediaSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		/Ub9n+jZ6eqCC+OvGShEkGqceH8=
+		uwxWKJUJ5RxcaiOVZEgTMCkQzMo=
 		</data>
 		<key>Modules/FlixMediaSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		SmgzEfOy4CSaHRVEkY2fGaTRvfs=
+		69ottFS8W0FEaBYIZCFnZSf2DV0=
 		</data>
 		<key>Modules/FlixMediaSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		upIN+HeMTk6hNqBeHUXpfBREE8k=
+		kSELZ4kpg3NFvxPj2zxboETlKcY=
 		</data>
 		<key>Modules/FlixMediaSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		SmgzEfOy4CSaHRVEkY2fGaTRvfs=
+		69ottFS8W0FEaBYIZCFnZSf2DV0=
 		</data>
 		<key>Modules/FlixMediaSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		udmtr9Bxs3rOWbMZAu2fXNFG9PU=
+		7ScDfI3IiwzMTlHjoMgIs99sOK4=
 		</data>
 		<key>Modules/FlixMediaSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		/Ub9n+jZ6eqCC+OvGShEkGqceH8=
+		uwxWKJUJ5RxcaiOVZEgTMCkQzMo=
 		</data>
 		<key>Modules/FlixMediaSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		IVzatJQOFC9c/wP6XWxmwA2uQWw=
+		B2TGi7P20enSIDEgnv4A5FaKl4U=
 		</data>
 		<key>Modules/FlixMediaSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		HekAZ1TtoNmMe5gS3T+/DYRUNbQ=
+		oUuOlg8lyheLkefEdRxyvthissU=
 		</data>
 		<key>Modules/FlixMediaSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		IVzatJQOFC9c/wP6XWxmwA2uQWw=
+		B2TGi7P20enSIDEgnv4A5FaKl4U=
 		</data>
 		<key>Modules/FlixMediaSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		4VSu4K7ejGLBsvsZ26UYKaJEW38=
+		JqYnsHlUd7wZQRpulf84tjCizpI=
 		</data>
 		<key>README.md</key>
 		<data>
@@ -59,70 +59,70 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ilV7DwZ73CEDgenZM8iHNOI8diiqQ+lOzaVqkwv24tk=
+			lyV6WZFyHUtZu7vd8mTFMOVPr2WHQSeXTpmkYtTYelI=
 			</data>
 		</dict>
 		<key>Modules/FlixMediaSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			jlDViD0lma3oG9n/fufj3B0SMOsJ78BTPxUQp5F7SO0=
+			joKK6iywDidMOj/mgeJv1cat2z3o0MhL1pgoFz5xl3M=
 			</data>
 		</dict>
 		<key>Modules/FlixMediaSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			iyv3dnwT1V0MPJ4C+F8cLXFrpkRxKAwgqFRyW5Rpe5E=
+			A9DOJonrw0kjBE6KNDByUCYCPX428UtMgxZwLzsegMc=
 			</data>
 		</dict>
 		<key>Modules/FlixMediaSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			jlDViD0lma3oG9n/fufj3B0SMOsJ78BTPxUQp5F7SO0=
+			joKK6iywDidMOj/mgeJv1cat2z3o0MhL1pgoFz5xl3M=
 			</data>
 		</dict>
 		<key>Modules/FlixMediaSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			4LtrxNMuV1uh9MT6CerQj5uU/gu2/dhtKfmpPcE4hqM=
+			tT6HvBHC33Fx4Ol/5SgPxwTBG0J1U6Qsdx1/DtaBJiA=
 			</data>
 		</dict>
 		<key>Modules/FlixMediaSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ilV7DwZ73CEDgenZM8iHNOI8diiqQ+lOzaVqkwv24tk=
+			lyV6WZFyHUtZu7vd8mTFMOVPr2WHQSeXTpmkYtTYelI=
 			</data>
 		</dict>
 		<key>Modules/FlixMediaSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			RDVLrjWo2TuFQ8L5WzWZ2jQUVcUR5cByZqmQ6X0Zv3o=
+			6Pfb704HfJWu4slASl6hdgF+x60d3GTNilPRzkLFtck=
 			</data>
 		</dict>
 		<key>Modules/FlixMediaSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Rv0ZVNPoJiq6rCyQEvjE/2VkPvIlDhR3JNXamgY3dyQ=
+			WogOPBGBFCmQ4gjPw7R8BhPh+hC4/VQG4Age1+xq+J8=
 			</data>
 		</dict>
 		<key>Modules/FlixMediaSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			RDVLrjWo2TuFQ8L5WzWZ2jQUVcUR5cByZqmQ6X0Zv3o=
+			6Pfb704HfJWu4slASl6hdgF+x60d3GTNilPRzkLFtck=
 			</data>
 		</dict>
 		<key>Modules/FlixMediaSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			g7pj9e4tX5024hP9dvyspEzPCJ9uH2ZRFrmUNimQ1Bo=
+			uOH9dukFd2uUL8XgIbONEpGLyrXej8HHtWTc/XV4iac=
 			</data>
 		</dict>
 		<key>README.md</key>

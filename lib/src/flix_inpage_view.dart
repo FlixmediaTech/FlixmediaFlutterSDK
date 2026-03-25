@@ -261,6 +261,7 @@ class _FlixInpageHtmlViewState extends State<FlixInpageHtmlView> {
         shouldOverrideUrlLoading: (controller, navigationAction) async {
           final url = navigationAction.request.url?.toString() ?? '';
           if (shouldHandleAsExternalLink(url)) {
+            await handleExternalLink(url, context);
             return NavigationActionPolicy.CANCEL;
           }
           return NavigationActionPolicy.ALLOW;

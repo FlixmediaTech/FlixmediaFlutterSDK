@@ -2,17 +2,37 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 bool shouldHandleAsExternalLink(String url) {
-  final uri = Uri.tryParse(url);
+  final normalizedUrl = url.trim().replaceAll(
+    RegExp(r'&amp;', caseSensitive: false),
+    '&',
+  );
+  final uri = Uri.tryParse(normalizedUrl);
   if (uri == null) return false;
 
-  final path = uri.path.toLowerCase();
-  return path.endsWith('.pdf') || path.endsWith('.doc') || path.endsWith('.docx');
+  final lowerUrl = normalizedUrl.toLowerCase();
+  final sceneViewerRegex = RegExp(
+    r'^https?:\/\/arvr\.google\.com\/scene-viewer(?:[\/?#]|$)',
+    caseSensitive: false,
+  );
+  final externalFileRegex = RegExp(
+    r'\.(pdf|docx?|usdz)(?:$|[?#&])',
+    caseSensitive: false,
+  );
+
+  return lowerUrl.startsWith('intent:') ||
+      sceneViewerRegex.hasMatch(normalizedUrl) ||
+      externalFileRegex.hasMatch(normalizedUrl);
 }
 
 Future<void> handleExternalLink(String url, BuildContext context) async {
   if (!shouldHandleAsExternalLink(url)) return;
 
-  final uri = Uri.parse(url);
+  final normalizedUrl = url.trim().replaceAll(
+    RegExp(r'&amp;', caseSensitive: false),
+    '&',
+  );
+  final uri = Uri.tryParse(normalizedUrl);
+  if (uri == null) return;
 
   final shouldOpen = await showDialog<bool>(
     context: context,

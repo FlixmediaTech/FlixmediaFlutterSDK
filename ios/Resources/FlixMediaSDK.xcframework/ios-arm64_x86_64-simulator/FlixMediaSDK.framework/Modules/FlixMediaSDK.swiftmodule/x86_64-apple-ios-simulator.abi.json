@@ -1581,6 +1581,64 @@
               },
               {
                 "kind": "Function",
+                "name": "webView",
+                "printedName": "webView(_:createWebViewWith:for:windowFeatures:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "WebKit.WKWebView?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "WKWebView",
+                        "printedName": "WebKit.WKWebView",
+                        "usr": "c:objc(cs)WKWebView"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WKWebView",
+                    "printedName": "WebKit.WKWebView",
+                    "usr": "c:objc(cs)WKWebView"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WKWebViewConfiguration",
+                    "printedName": "WebKit.WKWebViewConfiguration",
+                    "usr": "c:objc(cs)WKWebViewConfiguration"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WKNavigationAction",
+                    "printedName": "WebKit.WKNavigationAction",
+                    "usr": "c:objc(cs)WKNavigationAction"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WKWindowFeatures",
+                    "printedName": "WebKit.WKWindowFeatures",
+                    "usr": "c:objc(cs)WKWindowFeatures"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:12FlixMediaSDK0A7WebViewV11CoordinatorC03webE0_06createdE4With3for14windowFeaturesSo05WKWebE0CSgAK_So0mE13ConfigurationCSo18WKNavigationActionCSo08WKWindowL0CtF",
+                "mangledName": "$s12FlixMediaSDK0A7WebViewV11CoordinatorC03webE0_06createdE4With3for14windowFeaturesSo05WKWebE0CSgAK_So0mE13ConfigurationCSo18WKNavigationActionCSo08WKWindowL0CtF",
+                "moduleName": "FlixMediaSDK",
+                "objc_name": "webView:createWebViewWithConfiguration:forNavigationAction:windowFeatures:",
+                "declAttributes": [
+                  "Final",
+                  "ObjC",
+                  "Preconcurrency",
+                  "Custom",
+                  "AccessControl"
+                ],
+                "funcSelfKind": "NonMutating"
+              },
+              {
+                "kind": "Function",
                 "name": "scrollViewDidScroll",
                 "printedName": "scrollViewDidScroll(_:)",
                 "children": [
@@ -2146,56 +2204,56 @@
     {
       "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMediaSDK\/FlixMediaSDK\/UI\/FlixWebView.swift",
       "kind": "FloatLiteral",
-      "offset": 7874,
+      "offset": 7937,
       "length": 4,
       "value": "0.05"
     },
     {
       "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMediaSDK\/FlixMediaSDK\/UI\/FlixWebView.swift",
       "kind": "IntegerLiteral",
-      "offset": 7984,
+      "offset": 8047,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMediaSDK\/FlixMediaSDK\/UI\/FlixWebView.swift",
       "kind": "IntegerLiteral",
-      "offset": 8031,
+      "offset": 8094,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMediaSDK\/FlixMediaSDK\/UI\/FlixWebView.swift",
       "kind": "IntegerLiteral",
-      "offset": 13455,
+      "offset": 14340,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMediaSDK\/FlixMediaSDK\/UI\/FlixWebView.swift",
       "kind": "StringLiteral",
-      "offset": 13500,
+      "offset": 14385,
       "length": 24,
       "value": "\"nativeAppResizeHandler\""
     },
     {
       "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMediaSDK\/FlixMediaSDK\/UI\/FlixWebView.swift",
       "kind": "StringLiteral",
-      "offset": 13567,
+      "offset": 14452,
       "length": 18,
       "value": "\"scrollToViewport\""
     },
     {
       "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMediaSDK\/FlixMediaSDK\/UI\/FlixWebView.swift",
       "kind": "StringLiteral",
-      "offset": 13615,
+      "offset": 14500,
       "length": 13,
       "value": "\"viewportTop\""
     },
     {
       "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMediaSDK\/FlixMediaSDK\/UI\/FlixWebView.swift",
       "kind": "StringLiteral",
-      "offset": 13655,
+      "offset": 14540,
       "length": 10,
       "value": "\"animated\""
     },

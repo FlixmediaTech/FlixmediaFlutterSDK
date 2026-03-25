@@ -41,8 +41,14 @@ const String flixTrackingBridgeJS = r"""
 
 const String linkHandlerJS = r"""
       (function() {
-        function isExternalDocumentLink(href) {
-          return /\.(pdf|doc|docx)(?:[?#].*)?$/i.test(href || '');
+        function shouldOpenExternally(url) {
+          if (!url) return false;
+          var normalizedUrl = String(url).trim().replace(/&amp;/gi, '&');
+          return (
+            /\.(pdf|docx?|usdz)(?:$|[?#&])/i.test(normalizedUrl) ||
+            /^https?:\/\/arvr\.google\.com\/scene-viewer(?:[/?#]|$)/i.test(normalizedUrl) ||
+            /^intent:/i.test(normalizedUrl)
+          );
         }
 
         document.addEventListener('click', function(ev) {
@@ -55,11 +61,29 @@ const String linkHandlerJS = r"""
           if (!node || node === document) return;
 
           var href = node.getAttribute('href') || node.href;
-          if (!href || !isExternalDocumentLink(href)) return;
+          if (!href || !shouldOpenExternally(href)) return;
 
           ev.preventDefault();
+          ev.stopPropagation();
+          if (typeof ev.stopImmediatePropagation === 'function') {
+            ev.stopImmediatePropagation();
+          }
           window.flutter_inappwebview.callHandler('onLinktap', href);
         }, true);
+
+        try {
+          window.open = function(url) {
+            if (!url) return null;
+
+            if (shouldOpenExternally(url)) {
+              window.flutter_inappwebview.callHandler('onLinktap', url);
+              return null;
+            }
+
+            window.location.href = url;
+            return null;
+          };
+        } catch (e) {}
       })();
 """;
 
