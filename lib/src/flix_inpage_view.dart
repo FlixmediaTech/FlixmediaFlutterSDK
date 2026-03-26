@@ -187,7 +187,7 @@ class _FlixInpageHtmlViewState extends State<FlixInpageHtmlView> {
           disableHorizontalScroll: true,
           supportZoom: false,
           allowsInlineMediaPlayback: true,
-          mediaPlaybackRequiresUserGesture: true,
+          mediaPlaybackRequiresUserGesture: false,
           transparentBackground: false,
           isInspectable: true,
         ),
