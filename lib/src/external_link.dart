@@ -24,8 +24,12 @@ bool shouldHandleAsExternalLink(String url) {
       externalFileRegex.hasMatch(normalizedUrl);
 }
 
-Future<void> handleExternalLink(String url, BuildContext context) async {
-  if (!shouldHandleAsExternalLink(url)) return;
+Future<void> handleExternalLink(
+  String url,
+  BuildContext context, {
+  bool forceExternal = false,
+}) async {
+  if (!forceExternal && !shouldHandleAsExternalLink(url)) return;
 
   final normalizedUrl = url.trim().replaceAll(
     RegExp(r'&amp;', caseSensitive: false),

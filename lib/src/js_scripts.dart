@@ -52,7 +52,32 @@ const String linkHandlerJS = r"""
         }
 
         document.addEventListener('click', function(ev) {
-          var node = ev.target;
+          var clicked = ev.target;
+          var dataLinkNode = clicked && typeof clicked.closest === 'function'
+            ? clicked.closest('[data-link]')
+            : null;
+
+          if (dataLinkNode) {
+            var dataLinkValue = dataLinkNode.getAttribute('data-link');
+            if (!dataLinkValue) return;
+
+            var dataLinkUrl = '';
+            try {
+              dataLinkUrl = new URL(dataLinkValue, window.location.href).toString();
+            } catch (e) {
+              return;
+            }
+
+            ev.preventDefault();
+            ev.stopPropagation();
+            if (typeof ev.stopImmediatePropagation === 'function') {
+              ev.stopImmediatePropagation();
+            }
+            window.flutter_inappwebview.callHandler('onLinktap', dataLinkUrl, true);
+            return;
+          }
+
+          var node = clicked;
 
           while (node && node !== document) {
             if (node.tagName && node.tagName.toLowerCase() === 'a') break;

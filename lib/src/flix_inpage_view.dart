@@ -231,8 +231,11 @@ class _FlixInpageHtmlViewState extends State<FlixInpageHtmlView> {
             callback: (args) {
               if (args.isEmpty) return null;
               final url = args.first.toString();
-              if (!shouldHandleAsExternalLink(url)) return null;
-              handleExternalLink(url, context);
+              final forceExternal = args.length > 1 && args[1] == true;
+              if (!forceExternal && !shouldHandleAsExternalLink(url)) {
+                return null;
+              }
+              handleExternalLink(url, context, forceExternal: forceExternal);
               return null;
             },
           );
