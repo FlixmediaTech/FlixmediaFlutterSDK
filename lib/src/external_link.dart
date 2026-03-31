@@ -1,5 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+const _channel = MethodChannel('flix_media/methods');
 
 bool shouldHandleAsExternalLink(String url) {
   final normalizedUrl = url.trim().replaceAll(
@@ -57,7 +62,9 @@ Future<void> handleExternalLink(
   );
 
   if (shouldOpen == true) {
-    if (await canLaunchUrl(uri)) {
+    if (Platform.isIOS) {
+      await _channel.invokeMethod('openUrl', {'url': normalizedUrl});
+    } else if (await canLaunchUrl(uri)) {
       await launchUrl(uri, mode: LaunchMode.externalApplication);
     }
   }

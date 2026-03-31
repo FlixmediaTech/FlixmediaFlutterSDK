@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:math';
 import 'dart:collection';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'flix_bridge.dart';
@@ -32,6 +34,7 @@ class _FlixInpageHtmlViewState extends State<FlixInpageHtmlView> {
   InAppWebViewController? _controller;
   double _height = 1;
   String? _html;
+  bool _is3DInteracting = false;
 
   ScrollPosition? _scrollPosition;
   DateTime _lastSent = DateTime.fromMillisecondsSinceEpoch(0);
@@ -181,10 +184,23 @@ class _FlixInpageHtmlViewState extends State<FlixInpageHtmlView> {
     return SizedBox(
       height: _height,
       child: InAppWebView(
+        gestureRecognizers: defaultTargetPlatform == TargetPlatform.android
+            ? (_is3DInteracting
+                ? <Factory<OneSequenceGestureRecognizer>>{
+                    Factory<EagerGestureRecognizer>(
+                      () => EagerGestureRecognizer(),
+                    ),
+                  }
+                : <Factory<OneSequenceGestureRecognizer>>{
+                    Factory<ScaleGestureRecognizer>(
+                      () => ScaleGestureRecognizer(),
+                    ),
+                  })
+            : null,
         initialSettings: InAppWebViewSettings(
           javaScriptEnabled: true,
-          disableVerticalScroll: true,
-          disableHorizontalScroll: true,
+          disableVerticalScroll: defaultTargetPlatform != TargetPlatform.android,
+          disableHorizontalScroll: defaultTargetPlatform != TargetPlatform.android,
           supportZoom: false,
           allowsInlineMediaPlayback: true,
           mediaPlaybackRequiresUserGesture: false,
@@ -196,6 +212,11 @@ class _FlixInpageHtmlViewState extends State<FlixInpageHtmlView> {
             source: flixTrackingBridgeJS,
             injectionTime: UserScriptInjectionTime.AT_DOCUMENT_START,
           ),
+          if (defaultTargetPlatform == TargetPlatform.android)
+            UserScript(
+              source: canvas3DInteractionJS,
+              injectionTime: UserScriptInjectionTime.AT_DOCUMENT_END,
+            ),
           UserScript(
             source: resizeObserverJS,
             injectionTime: UserScriptInjectionTime.AT_DOCUMENT_END,
@@ -260,6 +281,26 @@ class _FlixInpageHtmlViewState extends State<FlixInpageHtmlView> {
               return null;
             },
           );
+          if (defaultTargetPlatform == TargetPlatform.android) {
+            c.addJavaScriptHandler(
+              handlerName: 'on3DInteractionStart',
+              callback: (args) {
+                if (mounted && !_is3DInteracting) {
+                  setState(() => _is3DInteracting = true);
+                }
+                return null;
+              },
+            );
+            c.addJavaScriptHandler(
+              handlerName: 'on3DInteractionEnd',
+              callback: (args) {
+                if (mounted && _is3DInteracting) {
+                  setState(() => _is3DInteracting = false);
+                }
+                return null;
+              },
+            );
+          }
         },
         shouldOverrideUrlLoading: (controller, navigationAction) async {
           final url = navigationAction.request.url?.toString() ?? '';

@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
   }
 
   s.source_files     = 'Classes/**/*'
-  s.resources      = ['Assets/*', 'Resources/*']
+  s.resources      = ['Assets/*']
   s.vendored_frameworks = 'Resources/FlixMediaSDK.xcframework'
 
   s.dependency 'Flutter'

@@ -15,8 +15,27 @@ public class FlixInpagePlugin: NSObject, FlutterPlugin {
             handleInitialize(call: call, result: result)
         case "getInpageHtml":
             handleGetInpageHtml(call: call, result: result)
+        case "openUrl":
+            handleOpenUrl(call: call, result: result)
         default:
             result(FlutterMethodNotImplemented)
+        }
+    }
+
+    private func handleOpenUrl(call: FlutterMethodCall, result: @escaping FlutterResult) {
+        guard
+            let args = call.arguments as? [String: Any],
+            let urlString = args["url"] as? String,
+            let url = URL(string: urlString)
+        else {
+            result(FlutterError(code: "ARG", message: "Missing url", details: nil))
+            return
+        }
+
+        DispatchQueue.main.async {
+            UIApplication.shared.open(url, options: [:]) { success in
+                result(success)
+            }
         }
     }
 

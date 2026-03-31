@@ -112,6 +112,36 @@ const String linkHandlerJS = r"""
       })();
 """;
 
+const String canvas3DInteractionJS = r"""
+(function() {
+  var touching = false;
+
+  function notifyStart() {
+    if (touching) return;
+    touching = true;
+    try { window.flutter_inappwebview.callHandler('on3DInteractionStart'); } catch(e) {}
+  }
+
+  function notifyEnd() {
+    if (!touching) return;
+    touching = false;
+    try { window.flutter_inappwebview.callHandler('on3DInteractionEnd'); } catch(e) {}
+  }
+
+  function onTouchStart(e) {
+    var el = e.target;
+    while (el && el !== document) {
+      if (el.tagName === 'CANVAS') { notifyStart(); return; }
+      el = el.parentElement;
+    }
+  }
+
+  document.addEventListener('touchstart', onTouchStart, { capture: true, passive: true });
+  document.addEventListener('touchend', function(e) { if (e.touches.length === 0) notifyEnd(); }, { capture: true, passive: true });
+  document.addEventListener('touchcancel', notifyEnd, { capture: true, passive: true });
+})();
+""";
+
 const String resizeObserverJS = r"""
         var lastHeight = 0;
         function sendResizeMessage() {
