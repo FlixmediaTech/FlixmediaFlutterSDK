@@ -17,7 +17,6 @@ buildscript {
 
 allprojects {
     repositories {
-        mavenLocal()
         google()
         mavenCentral()
     }
@@ -55,5 +54,5 @@ dependencies {
     implementation("com.google.code.gson:gson:2.11.0")
     implementation("com.google.android.gms:play-services-ads-identifier:18.2.0")
     implementation("com.google.android.ump:user-messaging-platform:3.1.0")
-    implementation("com.flixmedia:flixmediasdk:1.0.4")
+    implementation("com.flixmedia.flixmediasdk:flixmediasdk:1.0.4")
 }
