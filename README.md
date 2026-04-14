@@ -29,7 +29,6 @@ dependencies:
   flix_inpage:
     path: ../flix_inpage
 ```
-4. Android support is available, but requires the FlixMedia Android SDK **AAR** to be published to your local Maven repository (`mavenLocal`) before building (the plugin resolves `com.flixmedia:flixmediasdk:1.0.4` from `mavenLocal()`).
 
 ## Initialization
 Before rendering any content, you must initialize the SDK with your FlixMedia credentials.
