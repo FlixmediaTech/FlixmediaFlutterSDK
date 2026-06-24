@@ -3,6 +3,7 @@ package com.flix.flix_inpage
 import android.util.Log
 import com.flixmedia.flixmediasdk.FlixMedia
 import com.flixmedia.flixmediasdk.WebViewConfiguration
+import com.flixmedia.flixmediasdk.content.FlixMediaError
 import com.flixmedia.flixmediasdk.models.ProductRequestParameters
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
@@ -14,6 +15,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
 
 class FlixInpagePlugin : FlutterPlugin, MethodCallHandler {
     companion object {
@@ -33,6 +37,8 @@ class FlixInpagePlugin : FlutterPlugin, MethodCallHandler {
     override fun onMethodCall(call: MethodCall, result: Result) {
         when (call.method) {
             "initialize" -> handleInitialize(call, result)
+            "initializeWithToken" -> handleInitializeWithToken(call, result)
+            "updateToken" -> handleUpdateToken(call, result)
             "getInpageHtml" -> handleGetInpageHtml(call, result)
             else -> result.notImplemented()
         }
@@ -80,6 +86,86 @@ class FlixInpagePlugin : FlutterPlugin, MethodCallHandler {
         }
     }
 
+    private fun handleInitializeWithToken(call: MethodCall, result: Result) {
+        val args = call.arguments as? Map<*, *>
+        val idToken = args?.get("idToken") as? String
+        val useSandbox = args?.get("useSandbox") as? Boolean ?: false
+
+        if (idToken.isNullOrBlank()) {
+            result.error("ARG", "Missing idToken", null)
+            return
+        }
+
+        scope.launch {
+            try {
+                FlixMedia.initialize(
+                    context = appContext,
+                    idToken = idToken,
+                    expiresAt = args.normalizedExpiresAt(),
+                    useSandbox = useSandbox,
+                )
+                result.success(null)
+            } catch (error: Throwable) {
+                Log.e(
+                    TAG,
+                    "initializeWithToken: failed type=${error::class.java.name} message=${error.message}",
+                    error
+                )
+                result.error("INIT_TOKEN", error.message ?: "Token initialization failed", null)
+            }
+        }
+    }
+
+    private fun handleUpdateToken(call: MethodCall, result: Result) {
+        val args = call.arguments as? Map<*, *>
+        val idToken = args?.get("idToken") as? String
+
+        if (idToken.isNullOrBlank()) {
+            result.error("ARG", "Missing idToken", null)
+            return
+        }
+
+        scope.launch {
+            try {
+                FlixMedia.updateToken(
+                    context = appContext,
+                    idToken = idToken,
+                    expiresAt = args.normalizedExpiresAt(),
+                )
+                result.success(null)
+            } catch (error: Throwable) {
+                Log.e(
+                    TAG,
+                    "updateToken: failed type=${error::class.java.name} message=${error.message}",
+                    error
+                )
+                result.error("UPDATE_TOKEN", error.message ?: "Token update failed", null)
+            }
+        }
+    }
+
+    suspend fun requestTokenUpdate() {
+        suspendCancellableCoroutine<Unit> { continuation ->
+            channel.invokeMethod("requestTokenUpdate", null, object : Result {
+                override fun success(result: Any?) {
+                    continuation.resume(Unit)
+                }
+
+                override fun error(errorCode: String, errorMessage: String?, errorDetails: Any?) {
+                    continuation.resumeWithException(
+                        IllegalStateException(errorMessage ?: errorCode)
+                    )
+                }
+
+                override fun notImplemented() {
+                    continuation.resumeWithException(
+                        NotImplementedError("requestTokenUpdate is not implemented")
+                    )
+                }
+            })
+        }
+    }
+
     private fun handleGetInpageHtml(call: MethodCall, result: Result) {
         val args = call.arguments as? Map<*, *>
         val productParamsRaw = args?.get("productParams") as? Map<*, *>
@@ -110,7 +196,7 @@ class FlixInpagePlugin : FlutterPlugin, MethodCallHandler {
 
         scope.launch {
             try {
-                val html = FlixMedia.loadHTML(appContext, configuration)
+                val html = loadHtmlWithTokenRefresh(configuration)
                 result.success(html)
             } catch (error: Throwable) {
                 Log.e(
@@ -120,6 +206,15 @@ class FlixInpagePlugin : FlutterPlugin, MethodCallHandler {
                 )
                 result.error("HTML", error.message ?: "Failed to load HTML", null)
             }
+        }
+    }
+
+    private suspend fun loadHtmlWithTokenRefresh(configuration: WebViewConfiguration): String {
+        return try {
+            FlixMedia.loadHTML(appContext, configuration)
+        } catch (error: FlixMediaError.TokenExpired) {
+            requestTokenUpdate()
+            FlixMedia.loadHTML(appContext, configuration)
         }
     }
 
@@ -133,5 +228,14 @@ class FlixInpagePlugin : FlutterPlugin, MethodCallHandler {
             }
         }
         return ""
+    }
+
+    private fun Map<*, *>?.normalizedExpiresAt(): Long? {
+        val value = this?.get("expiresAt") ?: return null
+        return when (value) {
+            is Number -> value.toLong()
+            is String -> value.toLongOrNull()
+            else -> null
+        }
     }
 }

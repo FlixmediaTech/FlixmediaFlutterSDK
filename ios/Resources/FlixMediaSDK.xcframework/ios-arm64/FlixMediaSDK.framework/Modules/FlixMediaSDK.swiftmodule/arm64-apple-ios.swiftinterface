@@ -16,6 +16,12 @@ import _WebKit_SwiftUI
 @_hasMissingDesignatedInitializers public actor FlixMedia {
   public static let shared: FlixMediaSDK.FlixMedia
   public func initialize(username: Swift.String, password: Swift.String, useSandbox: Swift.Bool = false) async throws
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func initialize(idToken: Swift.String, expiresAt: Foundation.Date? = nil, useSandbox: Swift.Bool = false) async throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func updateToken(idToken: Swift.String, expiresAt: Foundation.Date? = nil) async throws
+  #endif
   public func loadHTML(configuration: FlixMediaSDK.WebViewConfiguration) async throws -> Swift.String
   @objc deinit
   @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
@@ -23,11 +29,20 @@ import _WebKit_SwiftUI
     get
   }
 }
+public struct FlixAuthToken : Swift.Equatable, Swift.Sendable {
+  public let idToken: Swift.String
+  public let expiresAt: Foundation.Date?
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(idToken: Swift.String, expiresAt: Foundation.Date? = nil)
+  #endif
+  public static func == (a: FlixMediaSDK.FlixAuthToken, b: FlixMediaSDK.FlixAuthToken) -> Swift.Bool
+}
 public enum FlixMediaError : Swift.Error, Foundation.LocalizedError, Swift.Sendable {
   case invalidResponse
   case emptyToken
   case unauthorized
   case tokenNotFound
+  case tokenExpired
   case refreshFailed
   case notInitialized
   case missingCredentials
@@ -53,7 +68,7 @@ public struct WebViewConfiguration : Swift.Sendable {
 }
 @_Concurrency.MainActor @preconcurrency public struct FlixWebView : SwiftUI.UIViewRepresentable {
   #if compiler(>=5.3) && $NonescapableTypes
-  @_Concurrency.MainActor @preconcurrency public init(configuration: FlixMediaSDK.WebViewConfiguration, logger: FlixMediaSDK.FlixWebViewLogger? = nil, onHeightChange: ((CoreFoundation.CGFloat) -> Swift.Void)? = nil, onStateChange: ((FlixMediaSDK.WebViewState) -> Swift.Void)? = nil)
+  @_Concurrency.MainActor @preconcurrency public init(configuration: FlixMediaSDK.WebViewConfiguration, logger: FlixMediaSDK.FlixWebViewLogger? = nil, onHeightChange: ((CoreFoundation.CGFloat) -> Swift.Void)? = nil, onStateChange: ((FlixMediaSDK.WebViewState) -> Swift.Void)? = nil, onShouldOpenExternalLink: ((Foundation.URL) -> Swift.Bool)? = nil)
   #endif
   @_Concurrency.MainActor @preconcurrency public func makeCoordinator() -> FlixMediaSDK.FlixWebView.Coordinator
   @_Concurrency.MainActor @preconcurrency public func makeUIView(context: FlixMediaSDK.FlixWebView.Context) -> WebKit.WKWebView

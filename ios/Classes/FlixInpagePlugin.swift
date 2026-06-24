@@ -3,9 +3,12 @@ import UIKit
 import FlixMediaSDK
 
 public class FlixInpagePlugin: NSObject, FlutterPlugin {
+    private var channel: FlutterMethodChannel?
+
     public static func register(with registrar: FlutterPluginRegistrar) {
         let channel = FlutterMethodChannel(name: "flix_media/methods", binaryMessenger: registrar.messenger())
         let instance = FlixInpagePlugin()
+        instance.channel = channel
         registrar.addMethodCallDelegate(instance, channel: channel)
     }
 
@@ -13,6 +16,10 @@ public class FlixInpagePlugin: NSObject, FlutterPlugin {
         switch call.method {
         case "initialize":
             handleInitialize(call: call, result: result)
+        case "initializeWithToken":
+            handleInitializeWithToken(call: call, result: result)
+        case "updateToken":
+            handleUpdateToken(call: call, result: result)
         case "getInpageHtml":
             handleGetInpageHtml(call: call, result: result)
         case "openUrl":
@@ -63,6 +70,83 @@ public class FlixInpagePlugin: NSObject, FlutterPlugin {
         }
     }
 
+    private func handleInitializeWithToken(call: FlutterMethodCall, result: @escaping FlutterResult) {
+        guard
+            let args = call.arguments as? [String: Any],
+            let idToken = args["idToken"] as? String,
+            !idToken.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        else {
+            result(FlutterError(code: "ARG", message: "Missing idToken", details: nil))
+            return
+        }
+
+        let useSandbox = args["useSandbox"] as? Bool ?? false
+
+        Task {
+            do {
+                try await FlixMedia.shared.initialize(
+                    idToken: idToken,
+                    expiresAt: tokenExpiryDate(from: args),
+                    useSandbox: useSandbox
+                )
+                await MainActor.run { result(nil) }
+            } catch {
+                await MainActor.run {
+                    result(FlutterError(code: "INIT_TOKEN", message: error.localizedDescription, details: nil))
+                }
+            }
+        }
+    }
+
+    private func handleUpdateToken(call: FlutterMethodCall, result: @escaping FlutterResult) {
+        guard
+            let args = call.arguments as? [String: Any],
+            let idToken = args["idToken"] as? String,
+            !idToken.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        else {
+            result(FlutterError(code: "ARG", message: "Missing idToken", details: nil))
+            return
+        }
+
+        Task {
+            do {
+                try await FlixMedia.shared.updateToken(
+                    idToken: idToken,
+                    expiresAt: tokenExpiryDate(from: args)
+                )
+                await MainActor.run { result(nil) }
+            } catch {
+                await MainActor.run {
+                    result(FlutterError(code: "UPDATE_TOKEN", message: error.localizedDescription, details: nil))
+                }
+            }
+        }
+    }
+
+    func requestTokenUpdate() async throws {
+        guard let channel else {
+            throw TokenUpdateRequestError(message: "Flutter channel is not attached")
+        }
+
+        try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
+            DispatchQueue.main.async {
+                channel.invokeMethod("requestTokenUpdate", arguments: nil) { response in
+                    if let error = response as? FlutterError {
+                        continuation.resume(
+                            throwing: TokenUpdateRequestError(message: error.message ?? error.code)
+                        )
+                    } else if let response = response as? NSObject, response == FlutterMethodNotImplemented {
+                        continuation.resume(
+                            throwing: TokenUpdateRequestError(message: "requestTokenUpdate is not implemented")
+                        )
+                    } else {
+                        continuation.resume()
+                    }
+                }
+            }
+        }
+    }
+
     private func handleGetInpageHtml(call: FlutterMethodCall, result: @escaping FlutterResult) {
         guard
             let args = call.arguments as? [String: Any],
@@ -86,13 +170,25 @@ public class FlixInpagePlugin: NSObject, FlutterPlugin {
 
         Task {
             do {
-                let html = try await buildFlixHTML(productParamsDTO: productParamsDTO, baseURL: baseURL)
+                let html = try await buildFlixHTMLWithTokenRefresh(
+                    productParamsDTO: productParamsDTO,
+                    baseURL: baseURL
+                )
                 await MainActor.run { result(html) }
             } catch {
                 await MainActor.run {
                     result(FlutterError(code: "HTML", message: error.localizedDescription, details: nil))
                 }
             }
+        }
+    }
+
+    private func buildFlixHTMLWithTokenRefresh(productParamsDTO: ProductRequestParametersDTO, baseURL: URL) async throws -> String {
+        do {
+            return try await buildFlixHTML(productParamsDTO: productParamsDTO, baseURL: baseURL)
+        } catch FlixMediaError.tokenExpired {
+            try await requestTokenUpdate()
+            return try await buildFlixHTML(productParamsDTO: productParamsDTO, baseURL: baseURL)
         }
     }
 
@@ -111,6 +207,33 @@ public class FlixInpagePlugin: NSObject, FlutterPlugin {
 
         let config = WebViewConfiguration(productParams: productParams, baseURL: baseURL)
         return try await FlixMedia.shared.loadHTML(configuration: config)
+    }
+
+    private func tokenExpiryDate(from args: [String: Any]) -> Date? {
+        guard let expiresAt = args["expiresAt"] else {
+            return nil
+        }
+
+        if let value = expiresAt as? NSNumber {
+            return Date(timeIntervalSince1970: value.doubleValue)
+        }
+
+        if let value = expiresAt as? String {
+            if let timestamp = Double(value) {
+                return Date(timeIntervalSince1970: timestamp)
+            }
+            return ISO8601DateFormatter().date(from: value)
+        }
+
+        return nil
+    }
+}
+
+private struct TokenUpdateRequestError: LocalizedError {
+    let message: String
+
+    var errorDescription: String? {
+        message
     }
 }
 

@@ -93,6 +93,9 @@ FlixWebView(
     },
     onStateChange: { state in
         // loading / loaded / error
+    },
+    onShouldOpenExternalLink: { url in
+        true
     }
 )
 ```
@@ -123,6 +126,42 @@ FlixWebView(
 
 ---
 
+## Logger (Optional)
+`FlixWebViewLogger` lets your app forward native log messages to the embedded Flix web content via `window.flixtracking.onLogFromApp(...)`.
+
+```swift
+import SwiftUI
+import FlixMediaSDK
+
+struct ProductView: View {
+    private let logger = FlixWebViewLogger()
+    private let config: WebViewConfiguration
+
+    init(config: WebViewConfiguration) {
+        self.config = config
+    }
+
+    var body: some View {
+        VStack(spacing: 16) {
+            FlixWebView(
+                configuration: config,
+                logger: logger
+            )
+
+            Button("Add to cart") {
+                Task {
+                    try? await logger.callLogFromApp("cartButtonTapped")
+                }
+            }
+        }
+    }
+}
+```
+
+> Note: If no web view is attached yet, `callLogFromApp(_:)` is ignored.
+
+---
+
 ## Error Handling
 `FlixMediaError` may surface in failures, including:
 - `unauthorized`, `missingCredentials`, `notInitialized`
@@ -140,6 +179,7 @@ FlixWebView(
 
 ## External Links
 - Link taps inside `FlixWebView` show a confirmation alert and open in Safari when confirmed.
+- `onShouldOpenExternalLink` is optional. When provided, it replaces the default confirmation alert for browser links. Return `true` to open the link in Safari, or `false` to cancel it.
 
 ---
 

@@ -45,6 +45,32 @@ Future<void> main() async {
 }
 ```
 
+Alternatively, initialize the SDK with a retailer-provided token provider. Use this when your app receives Flix access tokens from your backend instead of using a username and password in the app.
+
+```
+import 'package:flix_inpage/flix_inpage.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await FlixBridge.initializeWithTokenProvider(
+    tokenProvider: () async {
+      final token = await retailerBackend.fetchFlixToken();
+
+      return FlixTokenResult(
+        idToken: token.idToken,
+        expiresAt: token.expiresAt, // Unix timestamp in seconds or ISO-8601 string.
+      );
+    },
+    useSandbox: false,
+  );
+
+  runApp(const MaterialApp(home: HomePage()));
+}
+```
+
+The SDK calls `tokenProvider` during initialization. If the native iOS/Android SDK reports that the token expired while loading content, the Flutter SDK calls the same provider again and forwards the refreshed token automatically.
+
 ## Usage
 The plugin exposes a widget:
 
@@ -116,7 +142,7 @@ await flixController.callLogFromApp("cartButtonTapped");
 ```
 
 ## Notes
-Android is supported (with the FlixMedia Android SDK AAR published to `mavenLocal()`).
+Android uses the FlixMedia Android SDK from Maven.
 Debugging mode allows enabling isInspectable for WebView inspection (iOS 16.4+).
 Make sure your FlixMedia SDK credentials are initialized before loading content.
 
