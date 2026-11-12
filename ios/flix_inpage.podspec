@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'flix_inpage'
-  s.version          = '1.0.0'
+  s.version          = '1.0.8'
   s.summary          = 'Flutter iOS plugin that embeds FlixMediaFramework.'
   s.description      = <<-DESC
   Thin wrapper that exposes Flixmedia in-page content via an embedded XCFramework.
@@ -19,8 +19,10 @@ Pod::Spec.new do |s|
     'SWIFT_VERSION' => '5.10'
   }
 
-  s.source_files     = 'Classes/**/*'
-  s.resources      = ['Assets/*']
+  s.source_files     = 'flix_inpage/Sources/flix_inpage/**/*.swift'
+  s.resource_bundles = {
+    'flix_inpage_privacy' => ['flix_inpage/Sources/flix_inpage/PrivacyInfo.xcprivacy']
+  }
   s.vendored_frameworks = 'Resources/FlixMediaSDK.xcframework'
 
   s.dependency 'Flutter'

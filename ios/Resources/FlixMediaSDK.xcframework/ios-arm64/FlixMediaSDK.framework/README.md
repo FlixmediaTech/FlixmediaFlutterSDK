@@ -1,8 +1,11 @@
 # FlixMedia iOS SDK (XCFramework)
 
+Current version: `1.0.7`
+
 The **FlixMedia iOS SDK** embeds syndicated product content (images, videos, rich HTML) into iOS apps. It provides:
 - A ready-to-use SwiftUI view (**FlixWebView**) for in-app rendering.
 - A low-level method to obtain raw HTML when you prefer your own web view.
+- Authentication with Flix credentials or a backend-issued ID token.
 
 ---
 
@@ -19,10 +22,13 @@ The **FlixMedia iOS SDK** embeds syndicated product content (images, videos, ric
 - `FlixMedia.xcframework`
 - Public types:
   - `FlixMedia` (SDK entry point)
+  - `FlixAuthToken` (external token model)
   - `FlixWebView` (SwiftUI wrapper over `WKWebView`)
   - `FlixWebViewLogger` (optional JS log bridge)
   - `WebViewConfiguration` (immutable configuration)
   - `ProductRequestParameters` (product identifiers & locale)
+  - `FlixContentMode` (full vs. compact / Show More)
+  - `FlixConfigValue` (JSON-serializable value for `flixConfig`)
   - `WebViewState` (loading state enum)
   - `FlixMediaError` (error enum)
 
@@ -45,8 +51,8 @@ The **FlixMedia iOS SDK** embeds syndicated product content (images, videos, ric
 ---
 
 ## Initialization
-- Initialize the SDK once (typically at app start) using your Flix credentials.
-- The SDK securely caches an ID token; if present and valid, re-authentication is skipped.
+- Initialize the SDK once (typically at app start) using Flix credentials or a backend-issued ID token.
+- Credential mode securely caches an ID token; if present and valid, re-authentication is skipped.
 - Use `useSandbox: true` to target the **alpha** environment (defaults to production).
 
 ```swift
@@ -57,6 +63,23 @@ Task {
         username: "<your-username>",
         password: "<your-password>",
         useSandbox: false
+    )
+}
+```
+
+For backend-managed authentication, pass the ID token directly. When your backend refreshes it, call `updateToken(...)`.
+
+```swift
+Task {
+    try await FlixMedia.shared.initialize(
+        idToken: "<backend-issued-id-token>",
+        expiresAt: tokenExpiryDate,
+        useSandbox: false
+    )
+
+    try await FlixMedia.shared.updateToken(
+        idToken: "<refreshed-id-token>",
+        expiresAt: refreshedExpiryDate
     )
 }
 ```
@@ -102,6 +125,53 @@ FlixWebView(
 
 ---
 
+## Show More (Compact Content)
+
+Long product descriptions can be cropped to a maximum height with an expand/collapse
+control ("Show More" / "Show Less"). This behavior is rendered entirely by the Flix web
+layer (`fe.js`); the SDK's only job is to tell the web layer to enable it and how to
+style it, by injecting `window.flixConfig` before the content loads.
+
+Two inputs control this:
+
+- **`contentMode`** – A simple switch.
+  - `.full` *(default)* – render everything, exactly as before. Existing integrations
+    that never set this are unchanged.
+  - `.compact` – enable Show More. When set, `showMore.enabled` is turned on automatically
+    unless you override it.
+- **`flixConfig`** – Optional styling/behavior for the Show More control. All keys are
+  optional; the web layer provides sensible defaults.
+
+```swift
+let config = WebViewConfiguration(
+    productParams: params,
+    baseURL: URL(string: "https://example.com")!,
+    contentMode: .compact,
+    flixConfig: [
+        "showMore": [
+            "maxHeight": 1000,
+            "buttonStyle": "text",
+            "buttonText": "Show More",
+            "buttonTextExpanded": "Show Less",
+            "buttonColor": "#0066cc",
+            "gradientColor": "#ffffff"
+        ]
+    ]
+)
+
+FlixWebView(configuration: config)
+```
+
+`flixConfig` accepts a `[String: FlixConfigValue]`. `FlixConfigValue` supports string,
+integer, double, bool, array, object, and null via Swift literals, so you can write the
+payload inline as shown above.
+
+> Backward compatibility: `contentMode` defaults to `.full`. Retailers who never set it
+> render exactly as before — no cropping. `.compact` is a recommendation for new
+> integrations, never an automatic default.
+
+---
+
 ## Configuration Model
 - **ProductRequestParameters**
   - `mpn` – Manufacturer Part Number
@@ -116,6 +186,8 @@ FlixWebView(
 - **WebViewConfiguration**
   - `productParams` – The parameters above
   - `baseURL` – Base URL for resolving relative assets/links in HTML
+  - `contentMode` – `.full` (default) or `.compact`. See [Show More](#show-more-compact-content) below.
+  - `flixConfig` – Optional `[String: FlixConfigValue]` forwarded to the web layer as `window.flixConfig` (e.g. `showMore` styling).
 
 ---
 
@@ -166,7 +238,7 @@ struct ProductView: View {
 `FlixMediaError` may surface in failures, including:
 - `unauthorized`, `missingCredentials`, `notInitialized`
 - `invalidStatusCode(Int)`, `serverError(message:)`
-- Token lifecycle: `emptyToken`, `tokenNotFound`, `refreshFailed`
+- Token lifecycle: `emptyToken`, `tokenNotFound`, `tokenExpired`, `refreshFailed`
 - Transport/format: `invalidResponse`, `malformedURL`
 
 ---

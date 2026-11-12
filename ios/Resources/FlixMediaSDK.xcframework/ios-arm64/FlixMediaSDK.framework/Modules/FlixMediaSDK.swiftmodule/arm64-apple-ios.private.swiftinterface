@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.2.4 (swiftlang-6.2.4.1.4 clang-1700.6.4.2)
-// swift-module-flags: -target arm64-apple-ios15.6 -enable-objc-interop -enable-library-evolution -swift-version 6 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -module-name FlixMediaSDK
-// swift-module-flags-ignorable:  -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.4
+// swift-compiler-version: Apple Swift version 6.3.2 (swiftlang-6.3.2.1.108 clang-2100.1.1.101)
+// swift-module-flags: -target arm64-apple-ios15.6 -enable-objc-interop -enable-library-evolution -swift-version 6 -O -enable-experimental-feature DebugDescriptionMacro -module-name FlixMediaSDK
+// swift-module-flags-ignorable:  -formal-cxx-interoperability-mode=off -interface-compiler-version 6.3.2
 import AdSupport
 import AppTrackingTransparency
 import Foundation
@@ -16,12 +16,8 @@ import _WebKit_SwiftUI
 @_hasMissingDesignatedInitializers public actor FlixMedia {
   public static let shared: FlixMediaSDK.FlixMedia
   public func initialize(username: Swift.String, password: Swift.String, useSandbox: Swift.Bool = false) async throws
-  #if compiler(>=5.3) && $NonescapableTypes
   public func initialize(idToken: Swift.String, expiresAt: Foundation.Date? = nil, useSandbox: Swift.Bool = false) async throws
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
   public func updateToken(idToken: Swift.String, expiresAt: Foundation.Date? = nil) async throws
-  #endif
   public func loadHTML(configuration: FlixMediaSDK.WebViewConfiguration) async throws -> Swift.String
   @objc deinit
   @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
@@ -32,9 +28,7 @@ import _WebKit_SwiftUI
 public struct FlixAuthToken : Swift.Equatable, Swift.Sendable {
   public let idToken: Swift.String
   public let expiresAt: Foundation.Date?
-  #if compiler(>=5.3) && $NonescapableTypes
   public init(idToken: Swift.String, expiresAt: Foundation.Date? = nil)
-  #endif
   public static func == (a: FlixMediaSDK.FlixAuthToken, b: FlixMediaSDK.FlixAuthToken) -> Swift.Bool
 }
 public enum FlixMediaError : Swift.Error, Foundation.LocalizedError, Swift.Sendable {
@@ -49,11 +43,9 @@ public enum FlixMediaError : Swift.Error, Foundation.LocalizedError, Swift.Senda
   case invalidStatusCode(Swift.Int)
   case serverError(message: Swift.String)
   case malformedURL
-  #if compiler(>=5.3) && $NonescapableTypes
   public var errorDescription: Swift.String? {
     get
   }
-  #endif
 }
 public struct ProductRequestParameters : Swift.Sendable {
   public init(mpn: Swift.String, ean: Swift.String, distId: Swift.String, isoCode: Swift.String, flIsoCode: Swift.String, brand: Swift.String, title: Swift.String, price: Swift.String, currency: Swift.String)
@@ -63,13 +55,47 @@ public enum WebViewState {
   case loaded
   case error(any Swift.Error)
 }
+public enum FlixContentMode : Swift.String, Swift.Sendable {
+  case full
+  case compact
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum FlixConfigValue : Swift.Sendable, Swift.Equatable {
+  case string(Swift.String)
+  case int(Swift.Int)
+  case double(Swift.Double)
+  case bool(Swift.Bool)
+  case object([Swift.String : FlixMediaSDK.FlixConfigValue])
+  case array([FlixMediaSDK.FlixConfigValue])
+  case null
+  public static func == (a: FlixMediaSDK.FlixConfigValue, b: FlixMediaSDK.FlixConfigValue) -> Swift.Bool
+}
+extension FlixMediaSDK.FlixConfigValue : Swift.ExpressibleByStringLiteral, Swift.ExpressibleByIntegerLiteral, Swift.ExpressibleByFloatLiteral, Swift.ExpressibleByBooleanLiteral, Swift.ExpressibleByDictionaryLiteral, Swift.ExpressibleByArrayLiteral {
+  public init(stringLiteral value: Swift.String)
+  public init(integerLiteral value: Swift.Int)
+  public init(floatLiteral value: Swift.Double)
+  public init(booleanLiteral value: Swift.Bool)
+  public init(dictionaryLiteral elements: (Swift.String, FlixMediaSDK.FlixConfigValue)...)
+  public init(arrayLiteral elements: FlixMediaSDK.FlixConfigValue...)
+  public typealias ArrayLiteralElement = FlixMediaSDK.FlixConfigValue
+  public typealias BooleanLiteralType = Swift.Bool
+  public typealias ExtendedGraphemeClusterLiteralType = Swift.String
+  public typealias FloatLiteralType = Swift.Double
+  public typealias IntegerLiteralType = Swift.Int
+  public typealias Key = Swift.String
+  public typealias StringLiteralType = Swift.String
+  public typealias UnicodeScalarLiteralType = Swift.String
+  public typealias Value = FlixMediaSDK.FlixConfigValue
+}
 public struct WebViewConfiguration : Swift.Sendable {
-  public init(productParams: FlixMediaSDK.ProductRequestParameters, baseURL: Foundation.URL)
+  public init(productParams: FlixMediaSDK.ProductRequestParameters, baseURL: Foundation.URL, contentMode: FlixMediaSDK.FlixContentMode = .full, flixConfig: [Swift.String : FlixMediaSDK.FlixConfigValue] = [:])
 }
 @_Concurrency.MainActor @preconcurrency public struct FlixWebView : SwiftUI.UIViewRepresentable {
-  #if compiler(>=5.3) && $NonescapableTypes
   @_Concurrency.MainActor @preconcurrency public init(configuration: FlixMediaSDK.WebViewConfiguration, logger: FlixMediaSDK.FlixWebViewLogger? = nil, onHeightChange: ((CoreFoundation.CGFloat) -> Swift.Void)? = nil, onStateChange: ((FlixMediaSDK.WebViewState) -> Swift.Void)? = nil, onShouldOpenExternalLink: ((Foundation.URL) -> Swift.Bool)? = nil)
-  #endif
   @_Concurrency.MainActor @preconcurrency public func makeCoordinator() -> FlixMediaSDK.FlixWebView.Coordinator
   @_Concurrency.MainActor @preconcurrency public func makeUIView(context: FlixMediaSDK.FlixWebView.Context) -> WebKit.WKWebView
   @_Concurrency.MainActor @preconcurrency public func updateUIView(_ webView: WebKit.WKWebView, context: FlixMediaSDK.FlixWebView.Context)
@@ -78,13 +104,9 @@ public struct WebViewConfiguration : Swift.Sendable {
     @objc deinit
     @_Concurrency.MainActor @preconcurrency @objc final public func userContentController(_ userContentController: WebKit.WKUserContentController, didReceive message: WebKit.WKScriptMessage)
     @_Concurrency.MainActor @preconcurrency @objc final public func webView(_ webView: WebKit.WKWebView, decidePolicyFor navigationAction: WebKit.WKNavigationAction, decisionHandler: @escaping @_Concurrency.MainActor @Sendable (WebKit.WKNavigationActionPolicy) -> Swift.Void)
-    #if compiler(>=5.3) && $NonescapableTypes
     @_Concurrency.MainActor @preconcurrency @objc final public func webView(_ webView: WebKit.WKWebView, createWebViewWith configuration: WebKit.WKWebViewConfiguration, for navigationAction: WebKit.WKNavigationAction, windowFeatures: WebKit.WKWindowFeatures) -> WebKit.WKWebView?
-    #endif
     @_Concurrency.MainActor @preconcurrency @objc final public func scrollViewDidScroll(_ scrollView: UIKit.UIScrollView)
-    #if compiler(>=5.3) && $NonescapableTypes
     @_Concurrency.MainActor @preconcurrency @objc final public func webView(_ webView: WebKit.WKWebView, didFinish navigation: WebKit.WKNavigation!)
-    #endif
   }
   public typealias Body = Swift.Never
   public typealias UIViewType = WebKit.WKWebView
@@ -94,6 +116,9 @@ public struct WebViewConfiguration : Swift.Sendable {
   @_Concurrency.MainActor final public func callLogFromApp(_ message: Swift.String) async throws
   @objc deinit
 }
+extension FlixMediaSDK.FlixContentMode : Swift.Equatable {}
+extension FlixMediaSDK.FlixContentMode : Swift.Hashable {}
+extension FlixMediaSDK.FlixContentMode : Swift.RawRepresentable {}
 extension FlixMediaSDK.FlixWebView : Swift.Sendable {}
 extension FlixMediaSDK.FlixWebView.Coordinator : Swift.Sendable {}
 extension FlixMediaSDK.FlixWebViewLogger : Swift.Sendable {}

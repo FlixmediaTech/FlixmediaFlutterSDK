@@ -12,11 +12,10 @@ It allows you to display syndicated product content directly in Flutter using a 
 - Supports sending app-side log events to Flix tracking (`callLogFromApp`).
 
 ## Requirements
-- Flutter 3.0+  
+- Flutter 3.35+ with Dart 3.9+ (Flutter 3.44+ for Swift Package Manager)
 - iOS **15.6** or later  
 - Android minSdk **21**+  
-- Xcode 15+  
-- Swift 5  
+- Xcode 26.5+ (FlixMediaSDK 1.0.7 is built with Swift 6.3.2)
 
 ## Installation
 1. Download and extract the **`flix_inpage`** package from Releases section
@@ -29,6 +28,47 @@ dependencies:
   flix_inpage:
     path: ../flix_inpage
 ```
+
+### iOS: Swift Package Manager
+
+The plugin supports Swift Package Manager and CocoaPods. With Flutter 3.44 or
+later, SPM is enabled by default. Flutter discovers
+`ios/flix_inpage/Package.swift` automatically; do not add FlixMediaSPM manually
+to the app's Xcode project.
+
+Set the app's iOS deployment target to **15.6** or later, then run:
+
+```sh
+flutter pub get
+flutter build ios --no-codesign
+```
+
+SPM downloads FlixMediaSDK **1.0.7** from
+[FlixMediaSPM](https://github.com/FlixmediaTech/FlixMediaSPM) using an exact
+version, so the first build requires access to GitHub. CocoaPods uses the same
+SDK version bundled with this plugin.
+
+The plugin uses **`flutter_inappwebview: 6.2.0-beta.3`**, including its matching
+**`flutter_inappwebview_ios: 1.2.0-beta.3`** implementation with SPM support.
+The 6.1.5 facade is incompatible with the newer platform interface, so the
+WebView packages are upgraded together. This is a prerelease on both iOS and
+Android; include JavaScript handlers, scrolling, links, and media playback in
+your app's regression testing. No application-level `dependency_overrides`
+are required.
+
+### iOS: CocoaPods
+
+The `.podspec` remains supported. For Flutter 3.35–3.43, use CocoaPods. To use
+CocoaPods on newer Flutter versions, set this in the **app's** `pubspec.yaml`:
+
+```yaml
+flutter:
+  config:
+    enable-swift-package-manager: false
+```
+
+Set both the Xcode deployment target and the `ios/Podfile` platform to iOS 15.6
+or later. The Dart API is the same with either package manager.
 
 ## Initialization
 Before rendering any content, you must initialize the SDK with your FlixMedia credentials.

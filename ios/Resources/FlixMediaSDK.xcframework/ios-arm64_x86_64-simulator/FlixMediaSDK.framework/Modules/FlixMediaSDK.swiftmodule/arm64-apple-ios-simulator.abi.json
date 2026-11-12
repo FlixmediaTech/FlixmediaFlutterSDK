@@ -542,17 +542,17 @@
           },
           {
             "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          },
-          {
-            "kind": "Conformance",
             "name": "Equatable",
             "printedName": "Equatable",
             "usr": "s:SQ",
             "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
           },
           {
             "kind": "Conformance",
@@ -1131,13 +1131,6 @@
           },
           {
             "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          },
-          {
-            "kind": "Conformance",
             "name": "Error",
             "printedName": "Error",
             "usr": "s:s5ErrorP",
@@ -1149,6 +1142,13 @@
             "printedName": "LocalizedError",
             "usr": "s:10Foundation14LocalizedErrorP",
             "mangledName": "$s10Foundation14LocalizedErrorP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
           },
           {
             "kind": "Conformance",
@@ -1530,13 +1530,1076 @@
       },
       {
         "kind": "TypeDecl",
+        "name": "FlixContentMode",
+        "printedName": "FlixContentMode",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "full",
+            "printedName": "full",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(FlixMediaSDK.FlixContentMode.Type) -> FlixMediaSDK.FlixContentMode",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "FlixContentMode",
+                    "printedName": "FlixMediaSDK.FlixContentMode",
+                    "usr": "s:12FlixMediaSDK0A11ContentModeO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "FlixMediaSDK.FlixContentMode.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FlixContentMode",
+                        "printedName": "FlixMediaSDK.FlixContentMode",
+                        "usr": "s:12FlixMediaSDK0A11ContentModeO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12FlixMediaSDK0A11ContentModeO4fullyA2CmF",
+            "mangledName": "$s12FlixMediaSDK0A11ContentModeO4fullyA2CmF",
+            "moduleName": "FlixMediaSDK",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "compact",
+            "printedName": "compact",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(FlixMediaSDK.FlixContentMode.Type) -> FlixMediaSDK.FlixContentMode",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "FlixContentMode",
+                    "printedName": "FlixMediaSDK.FlixContentMode",
+                    "usr": "s:12FlixMediaSDK0A11ContentModeO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "FlixMediaSDK.FlixContentMode.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FlixContentMode",
+                        "printedName": "FlixMediaSDK.FlixContentMode",
+                        "usr": "s:12FlixMediaSDK0A11ContentModeO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12FlixMediaSDK0A11ContentModeO7compactyA2CmF",
+            "mangledName": "$s12FlixMediaSDK0A11ContentModeO7compactyA2CmF",
+            "moduleName": "FlixMediaSDK",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(rawValue:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "FlixMediaSDK.FlixContentMode?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "FlixContentMode",
+                    "printedName": "FlixMediaSDK.FlixContentMode",
+                    "usr": "s:12FlixMediaSDK0A11ContentModeO"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:12FlixMediaSDK0A11ContentModeO8rawValueACSgSS_tcfc",
+            "mangledName": "$s12FlixMediaSDK0A11ContentModeO8rawValueACSgSS_tcfc",
+            "moduleName": "FlixMediaSDK",
+            "implicit": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Var",
+            "name": "rawValue",
+            "printedName": "rawValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:12FlixMediaSDK0A11ContentModeO8rawValueSSvp",
+            "mangledName": "$s12FlixMediaSDK0A11ContentModeO8rawValueSSvp",
+            "moduleName": "FlixMediaSDK",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12FlixMediaSDK0A11ContentModeO8rawValueSSvg",
+                "mangledName": "$s12FlixMediaSDK0A11ContentModeO8rawValueSSvg",
+                "moduleName": "FlixMediaSDK",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:12FlixMediaSDK0A11ContentModeO",
+        "mangledName": "$s12FlixMediaSDK0A11ContentModeO",
+        "moduleName": "FlixMediaSDK",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "enumRawTypeName": "String",
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RawRepresentable",
+            "printedName": "RawRepresentable",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "RawValue",
+                "printedName": "RawValue",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:SY",
+            "mangledName": "$sSY"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "FlixConfigValue",
+        "printedName": "FlixConfigValue",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "string",
+            "printedName": "string",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(FlixMediaSDK.FlixConfigValue.Type) -> (Swift.String) -> FlixMediaSDK.FlixConfigValue",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.String) -> FlixMediaSDK.FlixConfigValue",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FlixConfigValue",
+                        "printedName": "FlixMediaSDK.FlixConfigValue",
+                        "usr": "s:12FlixMediaSDK0A11ConfigValueO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "FlixMediaSDK.FlixConfigValue.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FlixConfigValue",
+                        "printedName": "FlixMediaSDK.FlixConfigValue",
+                        "usr": "s:12FlixMediaSDK0A11ConfigValueO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12FlixMediaSDK0A11ConfigValueO6stringyACSScACmF",
+            "mangledName": "$s12FlixMediaSDK0A11ConfigValueO6stringyACSScACmF",
+            "moduleName": "FlixMediaSDK"
+          },
+          {
+            "kind": "Var",
+            "name": "int",
+            "printedName": "int",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(FlixMediaSDK.FlixConfigValue.Type) -> (Swift.Int) -> FlixMediaSDK.FlixConfigValue",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.Int) -> FlixMediaSDK.FlixConfigValue",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FlixConfigValue",
+                        "printedName": "FlixMediaSDK.FlixConfigValue",
+                        "usr": "s:12FlixMediaSDK0A11ConfigValueO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "FlixMediaSDK.FlixConfigValue.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FlixConfigValue",
+                        "printedName": "FlixMediaSDK.FlixConfigValue",
+                        "usr": "s:12FlixMediaSDK0A11ConfigValueO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12FlixMediaSDK0A11ConfigValueO3intyACSicACmF",
+            "mangledName": "$s12FlixMediaSDK0A11ConfigValueO3intyACSicACmF",
+            "moduleName": "FlixMediaSDK"
+          },
+          {
+            "kind": "Var",
+            "name": "double",
+            "printedName": "double",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(FlixMediaSDK.FlixConfigValue.Type) -> (Swift.Double) -> FlixMediaSDK.FlixConfigValue",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.Double) -> FlixMediaSDK.FlixConfigValue",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FlixConfigValue",
+                        "printedName": "FlixMediaSDK.FlixConfigValue",
+                        "usr": "s:12FlixMediaSDK0A11ConfigValueO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Double",
+                        "printedName": "Swift.Double",
+                        "usr": "s:Sd"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "FlixMediaSDK.FlixConfigValue.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FlixConfigValue",
+                        "printedName": "FlixMediaSDK.FlixConfigValue",
+                        "usr": "s:12FlixMediaSDK0A11ConfigValueO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12FlixMediaSDK0A11ConfigValueO6doubleyACSdcACmF",
+            "mangledName": "$s12FlixMediaSDK0A11ConfigValueO6doubleyACSdcACmF",
+            "moduleName": "FlixMediaSDK"
+          },
+          {
+            "kind": "Var",
+            "name": "bool",
+            "printedName": "bool",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(FlixMediaSDK.FlixConfigValue.Type) -> (Swift.Bool) -> FlixMediaSDK.FlixConfigValue",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.Bool) -> FlixMediaSDK.FlixConfigValue",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FlixConfigValue",
+                        "printedName": "FlixMediaSDK.FlixConfigValue",
+                        "usr": "s:12FlixMediaSDK0A11ConfigValueO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Bool",
+                        "printedName": "Swift.Bool",
+                        "usr": "s:Sb"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "FlixMediaSDK.FlixConfigValue.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FlixConfigValue",
+                        "printedName": "FlixMediaSDK.FlixConfigValue",
+                        "usr": "s:12FlixMediaSDK0A11ConfigValueO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12FlixMediaSDK0A11ConfigValueO4boolyACSbcACmF",
+            "mangledName": "$s12FlixMediaSDK0A11ConfigValueO4boolyACSbcACmF",
+            "moduleName": "FlixMediaSDK"
+          },
+          {
+            "kind": "Var",
+            "name": "object",
+            "printedName": "object",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(FlixMediaSDK.FlixConfigValue.Type) -> ([Swift.String : FlixMediaSDK.FlixConfigValue]) -> FlixMediaSDK.FlixConfigValue",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "([Swift.String : FlixMediaSDK.FlixConfigValue]) -> FlixMediaSDK.FlixConfigValue",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FlixConfigValue",
+                        "printedName": "FlixMediaSDK.FlixConfigValue",
+                        "usr": "s:12FlixMediaSDK0A11ConfigValueO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Dictionary",
+                        "printedName": "[Swift.String : FlixMediaSDK.FlixConfigValue]",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "String",
+                            "printedName": "Swift.String",
+                            "usr": "s:SS"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "FlixConfigValue",
+                            "printedName": "FlixMediaSDK.FlixConfigValue",
+                            "usr": "s:12FlixMediaSDK0A11ConfigValueO"
+                          }
+                        ],
+                        "usr": "s:SD"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "FlixMediaSDK.FlixConfigValue.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FlixConfigValue",
+                        "printedName": "FlixMediaSDK.FlixConfigValue",
+                        "usr": "s:12FlixMediaSDK0A11ConfigValueO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12FlixMediaSDK0A11ConfigValueO6objectyACSDySSACGcACmF",
+            "mangledName": "$s12FlixMediaSDK0A11ConfigValueO6objectyACSDySSACGcACmF",
+            "moduleName": "FlixMediaSDK"
+          },
+          {
+            "kind": "Var",
+            "name": "array",
+            "printedName": "array",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(FlixMediaSDK.FlixConfigValue.Type) -> ([FlixMediaSDK.FlixConfigValue]) -> FlixMediaSDK.FlixConfigValue",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "([FlixMediaSDK.FlixConfigValue]) -> FlixMediaSDK.FlixConfigValue",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FlixConfigValue",
+                        "printedName": "FlixMediaSDK.FlixConfigValue",
+                        "usr": "s:12FlixMediaSDK0A11ConfigValueO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Array",
+                        "printedName": "[FlixMediaSDK.FlixConfigValue]",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "FlixConfigValue",
+                            "printedName": "FlixMediaSDK.FlixConfigValue",
+                            "usr": "s:12FlixMediaSDK0A11ConfigValueO"
+                          }
+                        ],
+                        "usr": "s:Sa"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "FlixMediaSDK.FlixConfigValue.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FlixConfigValue",
+                        "printedName": "FlixMediaSDK.FlixConfigValue",
+                        "usr": "s:12FlixMediaSDK0A11ConfigValueO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12FlixMediaSDK0A11ConfigValueO5arrayyACSayACGcACmF",
+            "mangledName": "$s12FlixMediaSDK0A11ConfigValueO5arrayyACSayACGcACmF",
+            "moduleName": "FlixMediaSDK"
+          },
+          {
+            "kind": "Var",
+            "name": "null",
+            "printedName": "null",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(FlixMediaSDK.FlixConfigValue.Type) -> FlixMediaSDK.FlixConfigValue",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "FlixConfigValue",
+                    "printedName": "FlixMediaSDK.FlixConfigValue",
+                    "usr": "s:12FlixMediaSDK0A11ConfigValueO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "FlixMediaSDK.FlixConfigValue.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FlixConfigValue",
+                        "printedName": "FlixMediaSDK.FlixConfigValue",
+                        "usr": "s:12FlixMediaSDK0A11ConfigValueO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12FlixMediaSDK0A11ConfigValueO4nullyA2CmF",
+            "mangledName": "$s12FlixMediaSDK0A11ConfigValueO4nullyA2CmF",
+            "moduleName": "FlixMediaSDK"
+          },
+          {
+            "kind": "Function",
+            "name": "==",
+            "printedName": "==(_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "FlixConfigValue",
+                "printedName": "FlixMediaSDK.FlixConfigValue",
+                "usr": "s:12FlixMediaSDK0A11ConfigValueO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "FlixConfigValue",
+                "printedName": "FlixMediaSDK.FlixConfigValue",
+                "usr": "s:12FlixMediaSDK0A11ConfigValueO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12FlixMediaSDK0A11ConfigValueO2eeoiySbAC_ACtFZ",
+            "mangledName": "$s12FlixMediaSDK0A11ConfigValueO2eeoiySbAC_ACtFZ",
+            "moduleName": "FlixMediaSDK",
+            "static": true,
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(stringLiteral:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "FlixConfigValue",
+                "printedName": "FlixMediaSDK.FlixConfigValue",
+                "usr": "s:12FlixMediaSDK0A11ConfigValueO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:12FlixMediaSDK0A11ConfigValueO13stringLiteralACSS_tcfc",
+            "mangledName": "$s12FlixMediaSDK0A11ConfigValueO13stringLiteralACSS_tcfc",
+            "moduleName": "FlixMediaSDK",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(integerLiteral:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "FlixConfigValue",
+                "printedName": "FlixMediaSDK.FlixConfigValue",
+                "usr": "s:12FlixMediaSDK0A11ConfigValueO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:12FlixMediaSDK0A11ConfigValueO14integerLiteralACSi_tcfc",
+            "mangledName": "$s12FlixMediaSDK0A11ConfigValueO14integerLiteralACSi_tcfc",
+            "moduleName": "FlixMediaSDK",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(floatLiteral:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "FlixConfigValue",
+                "printedName": "FlixMediaSDK.FlixConfigValue",
+                "usr": "s:12FlixMediaSDK0A11ConfigValueO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Double",
+                "printedName": "Swift.Double",
+                "usr": "s:Sd"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:12FlixMediaSDK0A11ConfigValueO12floatLiteralACSd_tcfc",
+            "mangledName": "$s12FlixMediaSDK0A11ConfigValueO12floatLiteralACSd_tcfc",
+            "moduleName": "FlixMediaSDK",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(booleanLiteral:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "FlixConfigValue",
+                "printedName": "FlixMediaSDK.FlixConfigValue",
+                "usr": "s:12FlixMediaSDK0A11ConfigValueO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:12FlixMediaSDK0A11ConfigValueO14booleanLiteralACSb_tcfc",
+            "mangledName": "$s12FlixMediaSDK0A11ConfigValueO14booleanLiteralACSb_tcfc",
+            "moduleName": "FlixMediaSDK",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(dictionaryLiteral:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "FlixConfigValue",
+                "printedName": "FlixMediaSDK.FlixConfigValue",
+                "usr": "s:12FlixMediaSDK0A11ConfigValueO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[(Swift.String, FlixMediaSDK.FlixConfigValue)]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Tuple",
+                    "printedName": "(Swift.String, FlixMediaSDK.FlixConfigValue)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FlixConfigValue",
+                        "printedName": "FlixMediaSDK.FlixConfigValue",
+                        "usr": "s:12FlixMediaSDK0A11ConfigValueO"
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:12FlixMediaSDK0A11ConfigValueO17dictionaryLiteralACSS_ACtd_tcfc",
+            "mangledName": "$s12FlixMediaSDK0A11ConfigValueO17dictionaryLiteralACSS_ACtd_tcfc",
+            "moduleName": "FlixMediaSDK",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(arrayLiteral:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "FlixConfigValue",
+                "printedName": "FlixMediaSDK.FlixConfigValue",
+                "usr": "s:12FlixMediaSDK0A11ConfigValueO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[FlixMediaSDK.FlixConfigValue]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "FlixConfigValue",
+                    "printedName": "FlixMediaSDK.FlixConfigValue",
+                    "usr": "s:12FlixMediaSDK0A11ConfigValueO"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:12FlixMediaSDK0A11ConfigValueO12arrayLiteralA2Cd_tcfc",
+            "mangledName": "$s12FlixMediaSDK0A11ConfigValueO12arrayLiteralA2Cd_tcfc",
+            "moduleName": "FlixMediaSDK",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:12FlixMediaSDK0A11ConfigValueO",
+        "mangledName": "$s12FlixMediaSDK0A11ConfigValueO",
+        "moduleName": "FlixMediaSDK",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ExpressibleByUnicodeScalarLiteral",
+            "printedName": "ExpressibleByUnicodeScalarLiteral",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "UnicodeScalarLiteralType",
+                "printedName": "UnicodeScalarLiteralType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:s33ExpressibleByUnicodeScalarLiteralP",
+            "mangledName": "$ss33ExpressibleByUnicodeScalarLiteralP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ExpressibleByDictionaryLiteral",
+            "printedName": "ExpressibleByDictionaryLiteral",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "Key",
+                "printedName": "Key",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Value",
+                "printedName": "Value",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "FlixConfigValue",
+                    "printedName": "FlixMediaSDK.FlixConfigValue",
+                    "usr": "s:12FlixMediaSDK0A11ConfigValueO"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:s30ExpressibleByDictionaryLiteralP",
+            "mangledName": "$ss30ExpressibleByDictionaryLiteralP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ExpressibleByArrayLiteral",
+            "printedName": "ExpressibleByArrayLiteral",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "ArrayLiteralElement",
+                "printedName": "ArrayLiteralElement",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "FlixConfigValue",
+                    "printedName": "FlixMediaSDK.FlixConfigValue",
+                    "usr": "s:12FlixMediaSDK0A11ConfigValueO"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:s25ExpressibleByArrayLiteralP",
+            "mangledName": "$ss25ExpressibleByArrayLiteralP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ExpressibleByExtendedGraphemeClusterLiteral",
+            "printedName": "ExpressibleByExtendedGraphemeClusterLiteral",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "ExtendedGraphemeClusterLiteralType",
+                "printedName": "ExtendedGraphemeClusterLiteralType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:s43ExpressibleByExtendedGraphemeClusterLiteralP",
+            "mangledName": "$ss43ExpressibleByExtendedGraphemeClusterLiteralP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ExpressibleByStringLiteral",
+            "printedName": "ExpressibleByStringLiteral",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "StringLiteralType",
+                "printedName": "StringLiteralType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:s26ExpressibleByStringLiteralP",
+            "mangledName": "$ss26ExpressibleByStringLiteralP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ExpressibleByIntegerLiteral",
+            "printedName": "ExpressibleByIntegerLiteral",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "IntegerLiteralType",
+                "printedName": "IntegerLiteralType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:s27ExpressibleByIntegerLiteralP",
+            "mangledName": "$ss27ExpressibleByIntegerLiteralP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ExpressibleByFloatLiteral",
+            "printedName": "ExpressibleByFloatLiteral",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "FloatLiteralType",
+                "printedName": "FloatLiteralType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Double",
+                    "printedName": "Swift.Double",
+                    "usr": "s:Sd"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:s25ExpressibleByFloatLiteralP",
+            "mangledName": "$ss25ExpressibleByFloatLiteralP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ExpressibleByBooleanLiteral",
+            "printedName": "ExpressibleByBooleanLiteral",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "BooleanLiteralType",
+                "printedName": "BooleanLiteralType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:s27ExpressibleByBooleanLiteralP",
+            "mangledName": "$ss27ExpressibleByBooleanLiteralP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
         "name": "WebViewConfiguration",
         "printedName": "WebViewConfiguration",
         "children": [
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(productParams:baseURL:)",
+            "printedName": "init(productParams:baseURL:contentMode:flixConfig:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -1555,11 +2618,39 @@
                 "name": "URL",
                 "printedName": "Foundation.URL",
                 "usr": "s:10Foundation3URLV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "FlixContentMode",
+                "printedName": "FlixMediaSDK.FlixContentMode",
+                "hasDefaultArg": true,
+                "usr": "s:12FlixMediaSDK0A11ContentModeO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Dictionary",
+                "printedName": "[Swift.String : FlixMediaSDK.FlixConfigValue]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "FlixConfigValue",
+                    "printedName": "FlixMediaSDK.FlixConfigValue",
+                    "usr": "s:12FlixMediaSDK0A11ConfigValueO"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:SD"
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:12FlixMediaSDK20WebViewConfigurationV13productParams7baseURLAcA24ProductRequestParametersV_10Foundation0J0Vtcfc",
-            "mangledName": "$s12FlixMediaSDK20WebViewConfigurationV13productParams7baseURLAcA24ProductRequestParametersV_10Foundation0J0Vtcfc",
+            "usr": "s:12FlixMediaSDK20WebViewConfigurationV13productParams7baseURL11contentMode10flixConfigAcA24ProductRequestParametersV_10Foundation0J0VAA0a7ContentL0OSDySSAA0aN5ValueOGtcfc",
+            "mangledName": "$s12FlixMediaSDK20WebViewConfigurationV13productParams7baseURL11contentMode10flixConfigAcA24ProductRequestParametersV_10Foundation0J0VAA0a7ContentL0OSDySSAA0aN5ValueOGtcfc",
             "moduleName": "FlixMediaSDK",
             "declAttributes": [
               "AccessControl",
@@ -2160,38 +3251,10 @@
             "conformances": [
               {
                 "kind": "Conformance",
-                "name": "Copyable",
-                "printedName": "Copyable",
-                "usr": "s:s8CopyableP",
-                "mangledName": "$ss8CopyableP"
-              },
-              {
-                "kind": "Conformance",
-                "name": "Escapable",
-                "printedName": "Escapable",
-                "usr": "s:s9EscapableP",
-                "mangledName": "$ss9EscapableP"
-              },
-              {
-                "kind": "Conformance",
-                "name": "Equatable",
-                "printedName": "Equatable",
-                "usr": "s:SQ",
-                "mangledName": "$sSQ"
-              },
-              {
-                "kind": "Conformance",
-                "name": "Hashable",
-                "printedName": "Hashable",
-                "usr": "s:SH",
-                "mangledName": "$sSH"
-              },
-              {
-                "kind": "Conformance",
-                "name": "CVarArg",
-                "printedName": "CVarArg",
-                "usr": "s:s7CVarArgP",
-                "mangledName": "$ss7CVarArgP"
+                "name": "_KeyValueCodingAndObserving",
+                "printedName": "_KeyValueCodingAndObserving",
+                "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+                "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
               },
               {
                 "kind": "Conformance",
@@ -2202,10 +3265,24 @@
               },
               {
                 "kind": "Conformance",
-                "name": "_KeyValueCodingAndObserving",
-                "printedName": "_KeyValueCodingAndObserving",
-                "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
-                "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+                "name": "CVarArg",
+                "printedName": "CVarArg",
+                "usr": "s:s7CVarArgP",
+                "mangledName": "$ss7CVarArgP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "CustomDebugStringConvertible",
+                "printedName": "CustomDebugStringConvertible",
+                "usr": "s:s28CustomDebugStringConvertibleP",
+                "mangledName": "$ss28CustomDebugStringConvertibleP"
               },
               {
                 "kind": "Conformance",
@@ -2216,10 +3293,24 @@
               },
               {
                 "kind": "Conformance",
-                "name": "CustomDebugStringConvertible",
-                "printedName": "CustomDebugStringConvertible",
-                "usr": "s:s28CustomDebugStringConvertibleP",
-                "mangledName": "$ss28CustomDebugStringConvertibleP"
+                "name": "Equatable",
+                "printedName": "Equatable",
+                "usr": "s:SQ",
+                "mangledName": "$sSQ"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Hashable",
+                "printedName": "Hashable",
+                "usr": "s:SH",
+                "mangledName": "$sSH"
               },
               {
                 "kind": "Conformance",
@@ -2511,45 +3602,10 @@
         "conformances": [
           {
             "kind": "Conformance",
-            "name": "Sendable",
-            "printedName": "Sendable",
-            "usr": "s:s8SendableP",
-            "mangledName": "$ss8SendableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Copyable",
-            "printedName": "Copyable",
-            "usr": "s:s8CopyableP",
-            "mangledName": "$ss8CopyableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Equatable",
-            "printedName": "Equatable",
-            "usr": "s:SQ",
-            "mangledName": "$sSQ"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Hashable",
-            "printedName": "Hashable",
-            "usr": "s:SH",
-            "mangledName": "$sSH"
-          },
-          {
-            "kind": "Conformance",
-            "name": "CVarArg",
-            "printedName": "CVarArg",
-            "usr": "s:s7CVarArgP",
-            "mangledName": "$ss7CVarArgP"
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
           },
           {
             "kind": "Conformance",
@@ -2560,17 +3616,17 @@
           },
           {
             "kind": "Conformance",
-            "name": "_KeyValueCodingAndObserving",
-            "printedName": "_KeyValueCodingAndObserving",
-            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
-            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
           },
           {
             "kind": "Conformance",
-            "name": "CustomStringConvertible",
-            "printedName": "CustomStringConvertible",
-            "usr": "s:s23CustomStringConvertibleP",
-            "mangledName": "$ss23CustomStringConvertibleP"
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
           },
           {
             "kind": "Conformance",
@@ -2581,10 +3637,45 @@
           },
           {
             "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
             "name": "SendableMetatype",
             "printedName": "SendableMetatype",
             "usr": "s:s16SendableMetatypeP",
             "mangledName": "$ss16SendableMetatypeP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
           }
         ]
       }
@@ -2593,147 +3684,154 @@
   },
   "ConstValues": [
     {
-      "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMedia Projects\/FlixMediaSDK-remote\/FlixMediaSDK\/Core\/FlixMedia.swift",
+      "filePath": "\/Users\/sami\/Documents\/mobileapps\/ios\/FlixMediaSDK\/FlixMediaSDK\/Core\/FlixMedia.swift",
       "kind": "BooleanLiteral",
       "offset": 1945,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMedia Projects\/FlixMediaSDK-remote\/FlixMediaSDK\/Core\/FlixMedia.swift",
+      "filePath": "\/Users\/sami\/Documents\/mobileapps\/ios\/FlixMediaSDK\/FlixMediaSDK\/Core\/FlixMedia.swift",
       "kind": "BooleanLiteral",
       "offset": 4328,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMedia Projects\/FlixMediaSDK-remote\/FlixMediaSDK\/Services\/ContentService.swift",
+      "filePath": "\/Users\/sami\/Documents\/mobileapps\/ios\/FlixMediaSDK\/FlixMediaSDK\/Services\/ContentService.swift",
       "kind": "BooleanLiteral",
       "offset": 2332,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMedia Projects\/FlixMediaSDK-remote\/FlixMediaSDK\/UI\/FlixWebView.swift",
+      "filePath": "\/Users\/sami\/Documents\/mobileapps\/ios\/FlixMediaSDK\/FlixMediaSDK\/UI\/FlixWebView.swift",
+      "kind": "Dictionary",
+      "offset": 4268,
+      "length": 3,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/sami\/Documents\/mobileapps\/ios\/FlixMediaSDK\/FlixMediaSDK\/UI\/FlixWebView.swift",
       "kind": "FloatLiteral",
-      "offset": 8904,
+      "offset": 12805,
       "length": 4,
       "value": "0.05"
     },
     {
-      "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMedia Projects\/FlixMediaSDK-remote\/FlixMediaSDK\/UI\/FlixWebView.swift",
+      "filePath": "\/Users\/sami\/Documents\/mobileapps\/ios\/FlixMediaSDK\/FlixMediaSDK\/UI\/FlixWebView.swift",
       "kind": "IntegerLiteral",
-      "offset": 9014,
+      "offset": 12915,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMedia Projects\/FlixMediaSDK-remote\/FlixMediaSDK\/UI\/FlixWebView.swift",
+      "filePath": "\/Users\/sami\/Documents\/mobileapps\/ios\/FlixMediaSDK\/FlixMediaSDK\/UI\/FlixWebView.swift",
       "kind": "IntegerLiteral",
-      "offset": 9061,
+      "offset": 12962,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMedia Projects\/FlixMediaSDK-remote\/FlixMediaSDK\/UI\/FlixWebView.swift",
+      "filePath": "\/Users\/sami\/Documents\/mobileapps\/ios\/FlixMediaSDK\/FlixMediaSDK\/UI\/FlixWebView.swift",
       "kind": "IntegerLiteral",
-      "offset": 15927,
+      "offset": 19828,
       "length": 1,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMedia Projects\/FlixMediaSDK-remote\/FlixMediaSDK\/UI\/FlixWebView.swift",
+      "filePath": "\/Users\/sami\/Documents\/mobileapps\/ios\/FlixMediaSDK\/FlixMediaSDK\/UI\/FlixWebView.swift",
       "kind": "StringLiteral",
-      "offset": 15972,
+      "offset": 19873,
       "length": 24,
       "value": "\"nativeAppResizeHandler\""
     },
     {
-      "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMedia Projects\/FlixMediaSDK-remote\/FlixMediaSDK\/UI\/FlixWebView.swift",
+      "filePath": "\/Users\/sami\/Documents\/mobileapps\/ios\/FlixMediaSDK\/FlixMediaSDK\/UI\/FlixWebView.swift",
       "kind": "StringLiteral",
-      "offset": 16039,
+      "offset": 19940,
       "length": 18,
       "value": "\"scrollToViewport\""
     },
     {
-      "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMedia Projects\/FlixMediaSDK-remote\/FlixMediaSDK\/UI\/FlixWebView.swift",
+      "filePath": "\/Users\/sami\/Documents\/mobileapps\/ios\/FlixMediaSDK\/FlixMediaSDK\/UI\/FlixWebView.swift",
       "kind": "StringLiteral",
-      "offset": 16107,
+      "offset": 20008,
       "length": 21,
       "value": "\"externalLinkHandler\""
     },
     {
-      "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMedia Projects\/FlixMediaSDK-remote\/FlixMediaSDK\/UI\/FlixWebView.swift",
+      "filePath": "\/Users\/sami\/Documents\/mobileapps\/ios\/FlixMediaSDK\/FlixMediaSDK\/UI\/FlixWebView.swift",
       "kind": "StringLiteral",
-      "offset": 16158,
+      "offset": 20059,
       "length": 13,
       "value": "\"viewportTop\""
     },
     {
-      "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMedia Projects\/FlixMediaSDK-remote\/FlixMediaSDK\/UI\/FlixWebView.swift",
+      "filePath": "\/Users\/sami\/Documents\/mobileapps\/ios\/FlixMediaSDK\/FlixMediaSDK\/UI\/FlixWebView.swift",
       "kind": "StringLiteral",
-      "offset": 16198,
+      "offset": 20099,
       "length": 10,
       "value": "\"animated\""
     },
     {
-      "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMedia Projects\/FlixMediaSDK-remote\/FlixMediaSDK\/UI\/HTMLContentProcessor.swift",
+      "filePath": "\/Users\/sami\/Documents\/mobileapps\/ios\/FlixMediaSDK\/FlixMediaSDK\/UI\/HTMLContentProcessor.swift",
       "kind": "StringLiteral",
-      "offset": 541,
+      "offset": 651,
       "length": 7,
-      "value": "\"1.0.5\""
+      "value": "\"1.0.7\""
     },
     {
-      "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMedia Projects\/FlixMediaSDK-remote\/FlixMediaSDK\/Utils\/AuthStateStore.swift",
+      "filePath": "\/Users\/sami\/Documents\/mobileapps\/ios\/FlixMediaSDK\/FlixMediaSDK\/Utils\/AuthStateStore.swift",
       "kind": "IntegerLiteral",
       "offset": 171,
       "length": 2,
       "value": "60"
     },
     {
-      "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMedia Projects\/FlixMediaSDK-remote\/FlixMediaSDK\/Utils\/KeychainHelper.swift",
+      "filePath": "\/Users\/sami\/Documents\/mobileapps\/ios\/FlixMediaSDK\/FlixMediaSDK\/Utils\/KeychainHelper.swift",
       "kind": "StringLiteral",
       "offset": 1645,
       "length": 24,
       "value": "\"com.flixmedia.sdk.meta\""
     },
     {
-      "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMedia Projects\/FlixMediaSDK-remote\/FlixMediaSDK\/Utils\/KeychainHelper.swift",
+      "filePath": "\/Users\/sami\/Documents\/mobileapps\/ios\/FlixMediaSDK\/FlixMediaSDK\/Utils\/KeychainHelper.swift",
       "kind": "StringLiteral",
       "offset": 1706,
       "length": 13,
       "value": "\"environment\""
     },
     {
-      "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMedia Projects\/FlixMediaSDK-remote\/FlixMediaSDK\/Utils\/KeychainHelper.swift",
+      "filePath": "\/Users\/sami\/Documents\/mobileapps\/ios\/FlixMediaSDK\/FlixMediaSDK\/Utils\/KeychainHelper.swift",
       "kind": "StringLiteral",
       "offset": 1753,
       "length": 10,
       "value": "\"username\""
     },
     {
-      "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMedia Projects\/FlixMediaSDK-remote\/FlixMediaSDK\/Utils\/KeychainHelper.swift",
+      "filePath": "\/Users\/sami\/Documents\/mobileapps\/ios\/FlixMediaSDK\/FlixMediaSDK\/Utils\/KeychainHelper.swift",
       "kind": "StringLiteral",
       "offset": 1797,
       "length": 11,
       "value": "\"auth_mode\""
     },
     {
-      "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMedia Projects\/FlixMediaSDK-remote\/FlixMediaSDK\/Utils\/KeychainHelper.swift",
+      "filePath": "\/Users\/sami\/Documents\/mobileapps\/ios\/FlixMediaSDK\/FlixMediaSDK\/Utils\/KeychainHelper.swift",
       "kind": "StringLiteral",
       "offset": 1958,
       "length": 10,
       "value": "\"id_token\""
     },
     {
-      "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMedia Projects\/FlixMediaSDK-remote\/FlixMediaSDK\/Utils\/KeychainHelper.swift",
+      "filePath": "\/Users\/sami\/Documents\/mobileapps\/ios\/FlixMediaSDK\/FlixMediaSDK\/Utils\/KeychainHelper.swift",
       "kind": "StringLiteral",
       "offset": 2006,
       "length": 15,
       "value": "\"refresh_token\""
     },
     {
-      "filePath": "\/Users\/jacekdogiel\/Desktop\/FlixMedia Projects\/FlixMediaSDK-remote\/FlixMediaSDK\/Utils\/KeychainHelper.swift",
+      "filePath": "\/Users\/sami\/Documents\/mobileapps\/ios\/FlixMediaSDK\/FlixMediaSDK\/Utils\/KeychainHelper.swift",
       "kind": "StringLiteral",
       "offset": 2058,
       "length": 21,
